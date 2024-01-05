@@ -1,5 +1,4 @@
 package HDMessageDlg;
-
 {$R *.res}
 {$IFDEF IMPLICITBUILDING This IFDEF should not be used by users}
 {$ALIGN 8}
@@ -25,9 +24,18 @@ package HDMessageDlg;
 {$IMAGEBASE $400000}
 {$DEFINE DEBUG}
 {$ENDIF IMPLICITBUILDING}
+{$RUNONLY}
 {$IMPLICITBUILD ON}
 
 requires
-  rtl;
+  rtl,
+  dbrtl;
+
+contains
+  HDMessageDlg.Interfaces in 'src\HDMessageDlg.Interfaces.pas',
+  HDMessageDlg.Options in 'src\HDMessageDlg.Options.pas',
+  HDMessageDlg.Platform in 'src\HDMessageDlg.Platform.pas',
+  HDMessageDlg.Platform.FMX in 'src\HDMessageDlg.Platform.FMX.pas',
+  HDMessageDlg.Platform.VCL in 'src\HDMessageDlg.Platform.VCL.pas';
 
 end.
