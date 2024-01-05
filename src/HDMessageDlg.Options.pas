@@ -71,7 +71,14 @@ end;
 function THDMessageOptions.MsgIcon(aValue: TIcon): iHDMessageOptions;
 begin
   Result := Self;
-  // FMsgIcon de acordo com a plataforma
+  case aValue of
+    iAlert:     FMsgIcon := 'Alert';
+    iAttention: FMsgIcon := 'Attention';
+    iError:     FMsgIcon := 'Error';
+    iLike:      FMsgIcon := 'Like';
+    iMessage:   FMsgIcon := 'Message';
+    iQuestion:  FMsgIcon := 'Question';
+  end;
 end;
 
 function THDMessageOptions.MsgIcon: string;

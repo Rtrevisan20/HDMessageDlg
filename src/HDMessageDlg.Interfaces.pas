@@ -4,7 +4,7 @@ interface
 
 type
   TType = (tOK, tQuestion);
-  TIcon = (iAlert, iAttention, iError, ilike, iMessage, iQuestion);
+  TIcon = (iAlert, iAttention, iError, iLike, iMessage, iQuestion);
   iHDMessageFMX = Interface;
   iHDMessageVCL = interface;
   iHDMessagePlatform = interface;

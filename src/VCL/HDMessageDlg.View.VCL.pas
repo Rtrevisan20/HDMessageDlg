@@ -3,6 +3,7 @@ unit HDMessageDlg.View.VCL;
 interface
 
 uses
+  HDMessageDlg.Consts,
   HDMessageDlg.Interfaces,
 
   System.Classes,
@@ -25,28 +26,29 @@ uses
 
 type
   THDMessageDlgVCL = class(TForm)
-    pn_Fundo: TPanel;
-    pn_Topo: TPanel;
+    pn_Background: TPanel;
+    pn_Top: TPanel;
     pn_Linha: TPanel;
     lbl_Titulo: TLabel;
-    pn_FundoMensagem: TPanel;
-    pn_Imagem: TPanel;
+    pn_BackgroundMessage: TPanel;
+    pn_Image: TPanel;
     imgMensagem: TImage;
-    pn_Mensagem: TPanel;
-    pn_Pergunta: TPanel;
-    lbl_Pergunta: TLabel;
-    Panel1: TPanel;
-    lbl_Mensagem: TLabel;
-    pnButtons: TPanel;
-    pn_Nao: TPanel;
-    btn_Nao: TSpeedButton;
-    pn_Sim: TPanel;
-    btn_Sim: TSpeedButton;
-    procedure btn_SimClick(Sender: TObject);
-    procedure btn_NaoClick(Sender: TObject);
+    pn_Message: TPanel;
+    pn_Question: TPanel;
+    lbl_Question: TLabel;
+    pn_BodyMessage: TPanel;
+    lbl_BodyMessage: TLabel;
+    pn_Buttons: TPanel;
+    pn_No: TPanel;
+    btn_No: TSpeedButton;
+    pn_Yes: TPanel;
+    btn_Yes: TSpeedButton;
+    procedure btn_YesClick(Sender: TObject);
+    procedure btn_NoClick(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure FormShow(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure FormCreate(Sender: TObject);
   private
     FMsgTitle: string;
     FMsgQuestion: string;
@@ -60,6 +62,8 @@ type
     procedure SetType(const Value: TType);
     procedure TypeOK;
     procedure TypeQuestion;
+    procedure SetNo;
+    procedure SetYes;
   public
     MsgResponse : Boolean;
   published
@@ -74,16 +78,14 @@ implementation
 
 {$R *.dfm}
 
-procedure THDMessageDlgVCL.btn_NaoClick(Sender: TObject);
+procedure THDMessageDlgVCL.btn_NoClick(Sender: TObject);
 begin
- MsgResponse := False;
- Close;
+  SetNo;
 end;
 
-procedure THDMessageDlgVCL.btn_SimClick(Sender: TObject);
+procedure THDMessageDlgVCL.btn_YesClick(Sender: TObject);
 begin
- MsgResponse := True;
- Close;
+   SetYes;
 end;
 
 procedure THDMessageDlgVCL.FormClose(Sender: TObject; var Action: TCloseAction);
@@ -91,25 +93,40 @@ begin
  Action := caFree;
 end;
 
+procedure THDMessageDlgVCL.FormCreate(Sender: TObject);
+begin
+  // Set colors
+  pn_Top.Color               := VCLColorTop;
+  pn_Background.Color        := VCLColorBackuground;
+  pn_No.Color                := VCLColorButtonNo;
+  pn_Yes.Color               := VCLColorButtonYes;
+  lbl_Titulo.Font.Color      := VCLLabelTitle;
+  lbl_Question.Font.Color    := VCLLabelQuestion;
+  lbl_BodyMessage.Font.Color := VCLLabelQuestion;
+  btn_No.Font.Color          := VCLTextButtonNo;
+  btn_Yes.Font.Color         := VCLTextButtonYes;
+end;
+
 procedure THDMessageDlgVCL.FormKeyDown(Sender: TObject; var Key: Word;
   Shift: TShiftState);
 begin
-  if pn_Sim.Visible then
+  if pn_Yes.Visible then
    if key = VK_RETURN then
-    btn_SimClick(Self);
+    SetYes;
 
- if pn_Nao.Visible then
+ if pn_No.Visible then
    if key = VK_ESCAPE then
-    btn_NaoClick(Self);
+    SetNo;
 end;
 
 procedure THDMessageDlgVCL.FormShow(Sender: TObject);
 begin
- MsgResponse := False;
- lbl_Titulo.Caption := FMsgTitle;
- lbl_Pergunta.Caption := FMsgQuestion;
- lbl_Mensagem.Caption := FMsgBody;
- imgMensagem.Picture.LoadFromStream(TResourceStream.Create(HInstance, FMsgIcon ,RT_RCDATA));
+ MsgResponse             := False;
+ btn_No.Caption          := TextButtonNo;
+ lbl_Titulo.Caption      := FMsgTitle;
+ lbl_Question.Caption    := FMsgQuestion;
+ lbl_BodyMessage.Caption := FMsgBody;
+ imgMensagem.Picture.LoadFromStream(TResourceStream.Create(HInstance, FMsgIcon , RT_RCDATA));
 
  case FMsgType of
    TOK: TypeOK;
@@ -128,6 +145,12 @@ begin
   FMsgBody := Value;
 end;
 
+procedure THDMessageDlgVCL.SetNo;
+begin
+  MsgResponse := False;
+  Close;
+end;
+
 procedure THDMessageDlgVCL.SetQuestion(const Value: string);
 begin
   FMsgQuestion := Value;
@@ -143,16 +166,22 @@ begin
   FMsgTitle := Value;
 end;
 
+procedure THDMessageDlgVCL.SetYes;
+begin
+  MsgResponse := True;
+  Close;
+end;
+
 procedure THDMessageDlgVCL.TypeOK;
 begin
- pn_Nao.Visible := False;
- btn_Sim.Caption := 'OK (ENTER)';
+ pn_No.Visible := False;
+ btn_Yes.Caption := TextButtonOK;
 end;
 
 procedure THDMessageDlgVCL.TypeQuestion;
 begin
-  pn_Nao.Visible := True;
-  btn_Sim.Caption := 'SIM (ENTER)';
+  pn_No.Visible := True;
+  btn_Yes.Caption := TextButtonYes;
 end;
 
 end.

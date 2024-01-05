@@ -14,6 +14,7 @@ uses
   FMX.StdCtrls,
   FMX.Types,
 
+  HDMessageDlg.Consts,
   HDMessageDlg.Interfaces,
 
   System.Classes,
@@ -29,52 +30,53 @@ type
     RecBackGround: TRectangle;
     LayoutContainer: TLayout;
     LayoutTop: TLayout;
-    ReclblTitulo: TRectangle;
-    lblTitulo: TLabel;
-    LayoutContainerMensagem: TLayout;
+    ReclblTitle: TRectangle;
+    lbl_Title: TLabel;
+    LayoutContainerMessage: TLayout;
     LayoutIMG: TLayout;
-    imgMensagem: TImage;
-    LayoutMensagem: TLayout;
-    lblPergunta: TLabel;
-    lblMensagem: TLabel;
+    imgMenssage: TImage;
+    LayoutMessage: TLayout;
+    lbl_Question: TLabel;
+    lbl_BodyMessage: TLabel;
     LayoutButtons: TLayout;
-    LayoutSim: TLayout;
-    BackbtnSim: TRectangle;
-    btnSim: TButton;
+    LayoutYes: TLayout;
+    BackbtnYes: TRectangle;
+    btnYes: TButton;
     ShadowEffectBtnSim: TShadowEffect;
-    LayoutNao: TLayout;
-    BackbtnNao: TRectangle;
-    btnNao: TButton;
+    LayoutNo: TLayout;
+    BackbtnNo: TRectangle;
+    btnNo: TButton;
     ShadowEffectBtnNao: TShadowEffect;
     StyleBook: TStyleBook;
     procedure FormKeyDown(Sender: TObject; var Key: Word; var KeyChar: Char;
       Shift: TShiftState);
     procedure FormShow(Sender: TObject);
-    procedure btnNaoClick(Sender: TObject);
-    procedure btnSimClick(Sender: TObject);
+    procedure btnNoClick(Sender: TObject);
+    procedure btnYesClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
   private
-    FTitulo: string;
-    FPergunta: string;
-    FMensagem: string;
-    FType: TType;
-    FIcon: string;
-    procedure SetIcone(const Value: string);
-    procedure SetMensagem(const Value: string);
-    procedure SetPergunta(const Value: string);
-    procedure SetTipo(const Value: TType);
-    procedure SetTitulo(const Value: string);
-    procedure TipoOK;
-    procedure TipoPergunta;
-    procedure SetNao;
-    procedure SetSim;
+    FMsgTitle: string;
+    FMsgQuestion: string;
+    FMsgBody: string;
+    FMsgType: TType;
+    FMsgIcon: string;
+    procedure SetMsgIcon(const Value: string);
+    procedure SetMsgBody(const Value: string);
+    procedure SetMsgQuestion(const Value: string);
+    procedure SetMsgType(const Value: TType);
+    procedure SetMsgTitle(const Value: string);
+    procedure TypeOk;
+    procedure TypeQuestion;
+    procedure SetNo;
+    procedure SetYes;
   public
-    FRespostaMSG : Boolean;
+    MsgResponse : Boolean;
   published
-    property Titulo : string read FTitulo write SetTitulo;
-    property Pergunta : string read FPergunta write SetPergunta;
-    property Mensagem : string read FMensagem write SetMensagem;
-    property Icone : string read FIcon write SetIcone;
-    property Tipo : TType read FType write SetTipo;
+    property MsgTitle : string read FMsgTitle write SetMsgTitle;
+    property MsgQuestion : string read FMsgQuestion write SetMsgQuestion;
+    property MsgBody : string read FMsgBody write SetMsgBody;
+    property MsgIcon : string read FMsgIcon write SetMsgIcon;
+    property MsgType : TType read FMsgType write SetMsgType;
   end;
 
 implementation
@@ -83,90 +85,105 @@ implementation
 
 { TViewMensagem }
 
-procedure THDMessageDlgFMX.btnNaoClick(Sender: TObject);
+procedure THDMessageDlgFMX.btnNoClick(Sender: TObject);
 begin
-  SetNao;
+  SetNo;
 end;
 
-procedure THDMessageDlgFMX.btnSimClick(Sender: TObject);
+procedure THDMessageDlgFMX.btnYesClick(Sender: TObject);
 begin
-  SetSim;
+  SetYes;
+end;
+
+procedure THDMessageDlgFMX.FormCreate(Sender: TObject);
+begin
+  // Set Color
+  ReclblTitle.Fill.Color     := TAlphaColor(FMXColorTop);
+  RecBackGround.Fill.Color   := TAlphaColor(FMXColorBackuground);
+  BackbtnNo.Fill.Color       := TAlphaColor(FMXColorButtonNo);
+  BackbtnYes.Fill.Color      := TAlphaColor(FMXColorButtonYes);
+  lbl_Title.FontColor        := TAlphaColor(FMXLabelTitle);
+  lbl_Question.FontColor     := TAlphaColor(FMXLabelQuestion);
+  lbl_BodyMessage.FontColor  := TAlphaColor(FMXLabelQuestion);
+  btnNo.FontColor            := TAlphaColor(FMXTextButtonNo);
+  btnYes.FontColor           := TAlphaColor(FMXTextButtonYes);
 end;
 
 procedure THDMessageDlgFMX.FormKeyDown(Sender: TObject; var Key: Word;
   var KeyChar: Char; Shift: TShiftState);
 begin
-  if LayoutSim.Visible then
+  if LayoutYes.Visible then
    if key = VK_RETURN then
-    SetSim;
+    SetYes;
 
- if LayoutNao.Visible then
+ if LayoutNo.Visible then
    if key = VK_ESCAPE then
-    SetNao;
+    SetNo;
 end;
 
 procedure THDMessageDlgFMX.FormShow(Sender: TObject);
 begin
-  FRespostaMSG := False;
-  lblTitulo.Text := FTitulo;
-  lblPergunta.Text := FPergunta;
-  lblMensagem.Text := FMensagem;
-  imgMensagem.Bitmap.LoadFromStream(TResourceStream.Create(HInstance, FIcon ,RT_RCDATA));
+  MsgResponse          := False;
+  btnNo.Text           := TextButtonNo;
+  lbl_Title.Text       := FMsgTitle;
+  lbl_Question.Text    := FMsgQuestion;
+  lbl_BodyMessage.Text := FMsgBody;
+  imgMenssage.Bitmap.LoadFromStream(TResourceStream.Create(HInstance, FMsgIcon ,RT_RCDATA));
 
-  case FType of
-   tOK: TipoOK;
-   tQuestion: TipoPergunta;
+  case FMsgType of
+   tOK: TypeOk;
+   tQuestion: TypeQuestion;
   end;
 end;
 
-procedure THDMessageDlgFMX.SetIcone(const Value: string);
+procedure THDMessageDlgFMX.SetMsgIcon(const Value: string);
 begin
-  FIcon := Value;
+  FMsgIcon := Value;
 end;
 
-procedure THDMessageDlgFMX.SetMensagem(const Value: string);
+procedure THDMessageDlgFMX.SetMsgBody(const Value: string);
 begin
-  FMensagem := Value;
+  FMsgBody := Value;
 end;
 
-procedure THDMessageDlgFMX.SetNao;
+procedure THDMessageDlgFMX.SetNo;
 begin
-  FRespostaMSG := False;
+  MsgResponse := False;
   Close;
 end;
 
-procedure THDMessageDlgFMX.SetPergunta(const Value: string);
+procedure THDMessageDlgFMX.SetMsgQuestion(const Value: string);
 begin
-  FPergunta := Value;
+  FMsgQuestion := Value;
 end;
 
-procedure THDMessageDlgFMX.SetSim;
+procedure THDMessageDlgFMX.SetYes;
 begin
-  FRespostaMSG := True;
+  MsgResponse := True;
   Close;
 end;
 
-procedure THDMessageDlgFMX.SetTipo(const Value: TType);
+procedure THDMessageDlgFMX.SetMsgType(const Value: TType);
 begin
-  FType := Value;
+  FMsgType := Value;
 end;
 
-procedure THDMessageDlgFMX.SetTitulo(const Value: string);
+procedure THDMessageDlgFMX.SetMsgTitle(const Value: string);
 begin
-  FTitulo := Value;
+  FMsgTitle := Value;
 end;
 
-procedure THDMessageDlgFMX.TipoOK;
+procedure THDMessageDlgFMX.TypeOk;
 begin
-  LayoutNao.Visible := False;
-  btnSim.Text := 'OK (ENTER)';
+  LayoutNo.Visible := False;
+  btnYes.Text := TextButtonOK;
 end;
 
-procedure THDMessageDlgFMX.TipoPergunta;
+procedure THDMessageDlgFMX.TypeQuestion;
 begin
-  LayoutNao.Visible := True;
-  btnSim.Text := 'SIM (ENTER)';
-  BackbtnSim.Fill.Color := TAlphaColor($FFEF553B);
+  LayoutNo.Visible := True;
+  btnYes.Text := TextButtonYes;
+  BackbtnYes.Fill.Color := TAlphaColor($FFEF553B);
 end;
 
 end.

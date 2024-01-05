@@ -12,10 +12,11 @@ object HDMessageDlgVCL: THDMessageDlgVCL
   Font.Style = []
   Position = poScreenCenter
   OnClose = FormClose
+  OnCreate = FormCreate
   OnKeyDown = FormKeyDown
   OnShow = FormShow
   TextHeight = 15
-  object pn_Fundo: TPanel
+  object pn_Background: TPanel
     Left = 0
     Top = 0
     Width = 608
@@ -24,7 +25,7 @@ object HDMessageDlgVCL: THDMessageDlgVCL
     BevelOuter = bvNone
     ParentBackground = False
     TabOrder = 0
-    object pn_Topo: TPanel
+    object pn_Top: TPanel
       Left = 0
       Top = 0
       Width = 608
@@ -37,9 +38,9 @@ object HDMessageDlgVCL: THDMessageDlgVCL
       object lbl_Titulo: TLabel
         Left = 15
         Top = 6
-        Width = 92
+        Width = 81
         Height = 30
-        Caption = 'lbl_Titulo'
+        Caption = 'lbl_Tytle'
         Color = clBtnFace
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWhite
@@ -61,15 +62,17 @@ object HDMessageDlgVCL: THDMessageDlgVCL
         TabOrder = 0
       end
     end
-    object pn_FundoMensagem: TPanel
+    object pn_BackgroundMessage: TPanel
       Left = 0
       Top = 46
       Width = 608
       Height = 176
       Align = alClient
       BevelOuter = bvNone
+      Color = 14407895
+      ParentBackground = False
       TabOrder = 1
-      object pn_Imagem: TPanel
+      object pn_Image: TPanel
         Left = 0
         Top = 0
         Width = 176
@@ -84,11 +87,11 @@ object HDMessageDlgVCL: THDMessageDlgVCL
           Height = 176
           Align = alClient
           Center = True
+          ExplicitLeft = -3
           ExplicitTop = -4
-          ExplicitWidth = 201
         end
       end
-      object pn_Mensagem: TPanel
+      object pn_Message: TPanel
         Left = 176
         Top = 0
         Width = 432
@@ -96,13 +99,14 @@ object HDMessageDlgVCL: THDMessageDlgVCL
         Align = alClient
         BevelOuter = bvNone
         TabOrder = 1
-        object pn_Pergunta: TPanel
+        object pn_Question: TPanel
           Left = 0
           Top = 0
           Width = 432
           Height = 34
           Align = alTop
           BevelOuter = bvNone
+          Color = 14407895
           Font.Charset = DEFAULT_CHARSET
           Font.Color = 5728885
           Font.Height = -12
@@ -111,14 +115,14 @@ object HDMessageDlgVCL: THDMessageDlgVCL
           ParentBackground = False
           ParentFont = False
           TabOrder = 0
-          object lbl_Pergunta: TLabel
+          object lbl_Question: TLabel
             AlignWithMargins = True
             Left = 3
             Top = 3
             Width = 426
             Height = 28
             Align = alClient
-            Caption = 'Pergunta de teste?'
+            Caption = 'lbl_Question'
             Color = clBtnFace
             Font.Charset = DEFAULT_CHARSET
             Font.Color = 16477960
@@ -129,11 +133,11 @@ object HDMessageDlgVCL: THDMessageDlgVCL
             ParentFont = False
             Layout = tlCenter
             WordWrap = True
-            ExplicitWidth = 164
+            ExplicitWidth = 110
             ExplicitHeight = 25
           end
         end
-        object Panel1: TPanel
+        object pn_BodyMessage: TPanel
           Left = 0
           Top = 34
           Width = 432
@@ -141,14 +145,14 @@ object HDMessageDlgVCL: THDMessageDlgVCL
           Align = alTop
           BevelOuter = bvNone
           TabOrder = 1
-          object lbl_Mensagem: TLabel
+          object lbl_BodyMessage: TLabel
             AlignWithMargins = True
             Left = 3
             Top = 3
             Width = 426
             Height = 68
             Align = alClient
-            Caption = 'lbl_Pergunta'
+            Caption = 'lbl_BodyMessage'
             Font.Charset = DEFAULT_CHARSET
             Font.Color = 6445397
             Font.Height = -16
@@ -156,11 +160,10 @@ object HDMessageDlgVCL: THDMessageDlgVCL
             Font.Style = []
             ParentFont = False
             WordWrap = True
-            ExplicitWidth = 86
-            ExplicitHeight = 21
+            ExplicitLeft = 6
           end
         end
-        object pnButtons: TPanel
+        object pn_Buttons: TPanel
           Left = 0
           Top = 137
           Width = 432
@@ -168,7 +171,7 @@ object HDMessageDlgVCL: THDMessageDlgVCL
           Align = alBottom
           BevelOuter = bvNone
           TabOrder = 2
-          object pn_Nao: TPanel
+          object pn_No: TPanel
             AlignWithMargins = True
             Left = 103
             Top = 3
@@ -179,7 +182,7 @@ object HDMessageDlgVCL: THDMessageDlgVCL
             Color = 16477960
             ParentBackground = False
             TabOrder = 0
-            object btn_Nao: TSpeedButton
+            object btn_No: TSpeedButton
               Left = 0
               Top = 0
               Width = 160
@@ -193,12 +196,12 @@ object HDMessageDlgVCL: THDMessageDlgVCL
               Font.Name = 'Segoe UI'
               Font.Style = [fsBold]
               ParentFont = False
-              OnClick = btn_NaoClick
+              OnClick = btn_NoClick
               ExplicitLeft = -24
               ExplicitTop = -16
             end
           end
-          object pn_Sim: TPanel
+          object pn_Yes: TPanel
             AlignWithMargins = True
             Left = 269
             Top = 3
@@ -209,7 +212,7 @@ object HDMessageDlgVCL: THDMessageDlgVCL
             Color = 5286156
             ParentBackground = False
             TabOrder = 1
-            object btn_Sim: TSpeedButton
+            object btn_Yes: TSpeedButton
               Left = 0
               Top = 0
               Width = 160
@@ -223,7 +226,7 @@ object HDMessageDlgVCL: THDMessageDlgVCL
               Font.Name = 'Segoe UI'
               Font.Style = [fsBold]
               ParentFont = False
-              OnClick = btn_SimClick
+              OnClick = btn_YesClick
               ExplicitLeft = 32
               ExplicitTop = 8
               ExplicitWidth = 113

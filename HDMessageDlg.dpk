@@ -1,5 +1,6 @@
 package HDMessageDlg;
 {$R *.res}
+{$R *.dres}
 {$IFDEF IMPLICITBUILDING This IFDEF should not be used by users}
 {$ALIGN 8}
 {$ASSERTIONS ON}
@@ -41,6 +42,7 @@ contains
   HDMessageDlg.Platform.FMX in 'src\HDMessageDlg.Platform.FMX.pas',
   HDMessageDlg.Platform.VCL in 'src\HDMessageDlg.Platform.VCL.pas',
   HDMessageDlg.View.FMX in 'src\FMX\HDMessageDlg.View.FMX.pas' {HDMessageDlgFMX},
-  HDMessageDlg.View.VCL in 'src\VCL\HDMessageDlg.View.VCL.pas' {HDMessageDlgVCL};
+  HDMessageDlg.View.VCL in 'src\VCL\HDMessageDlg.View.VCL.pas' {HDMessageDlgVCL},
+  HDMessageDlg.Consts in 'src\HDMessageDlg.Consts.pas';
 
 end.
