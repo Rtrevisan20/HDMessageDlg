@@ -17,7 +17,7 @@ type
     function MsgQuestion(aValue: String): iHDMessageOptions; overload;
     function MsgBody: String; overload;
     function MsgBody(aValue: String): iHDMessageOptions; overload;
-    function MsgIcon: Integer; overload;
+    function MsgIcon: string; overload;
     function MsgIcon(aValue: TIcon): iHDMessageOptions; overload;
     function MsgType: TType; overload;
     function MsgType(aValue: TType): iHDMessageOptions; overload;

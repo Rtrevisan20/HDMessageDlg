@@ -3,7 +3,7 @@
         <ProjectGuid>{10810C64-9120-489E-819A-4EE86CEFBB3C}</ProjectGuid>
         <MainSource>HDMessageDlg.dpk</MainSource>
         <ProjectVersion>19.5</ProjectVersion>
-        <FrameworkType>None</FrameworkType>
+        <FrameworkType>FMX</FrameworkType>
         <Base>True</Base>
         <Config Condition="'$(Config)'==''">Debug</Config>
         <Platform Condition="'$(Platform)'==''">Win32</Platform>
@@ -83,11 +83,22 @@
         </DelphiCompile>
         <DCCReference Include="rtl.dcp"/>
         <DCCReference Include="dbrtl.dcp"/>
+        <DCCReference Include="fmx.dcp"/>
+        <DCCReference Include="vclimg.dcp"/>
+        <DCCReference Include="vcl.dcp"/>
         <DCCReference Include="src\HDMessageDlg.Interfaces.pas"/>
         <DCCReference Include="src\HDMessageDlg.Options.pas"/>
         <DCCReference Include="src\HDMessageDlg.Platform.pas"/>
         <DCCReference Include="src\HDMessageDlg.Platform.FMX.pas"/>
         <DCCReference Include="src\HDMessageDlg.Platform.VCL.pas"/>
+        <DCCReference Include="src\FMX\HDMessageDlg.View.FMX.pas">
+            <Form>HDMessageDlgFMX</Form>
+            <FormType>fmx</FormType>
+        </DCCReference>
+        <DCCReference Include="src\VCL\HDMessageDlg.View.VCL.pas">
+            <Form>HDMessageDlgVCL</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

@@ -17,7 +17,7 @@ type
     FMsgTitle: String;
     FMsgQuestion: String;
     FMsgBody: String;
-    FMsgIcon: Integer;
+    FMsgIcon: string;
     FMsgType: TType;
     FMessagePlatform : iHDMessagePlatform;
   public
@@ -30,7 +30,7 @@ type
     function MsgQuestion(aValue: String): iHDMessageOptions; overload;
     function MsgBody: String; overload;
     function MsgBody(aValue: String): iHDMessageOptions; overload;
-    function MsgIcon: Integer; overload;
+    function MsgIcon: string; overload;
     function MsgIcon(aValue: TIcon): iHDMessageOptions; overload;
     function MsgType: TType; overload;
     function MsgType(aValue: TType): iHDMessageOptions; overload;
@@ -74,7 +74,7 @@ begin
   // FMsgIcon de acordo com a plataforma
 end;
 
-function THDMessageOptions.MsgIcon: Integer;
+function THDMessageOptions.MsgIcon: string;
 begin
   Result := FMsgIcon;
 end;

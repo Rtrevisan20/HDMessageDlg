@@ -6,6 +6,7 @@ uses
   Data.DB,
 
   HDMessageDlg.Interfaces,
+  HDMessageDlg.View.VCL,
 
   System.Classes,
   System.SysUtils;
@@ -39,13 +40,39 @@ begin
 end;
 
 function THDMessageVCL.DisplayMessage: iHDMessageVCL;
+var
+  HDMessageDlgVCL : THDMessageDlgVCL;
 begin
   Result := Self;
+  HDMessageDlgVCL := THDMessageDlgVCL.Create(nil);
+  try
+   HDMessageDlgVCL.MsgTitle    := FParent.MsgTitle;
+   HDMessageDlgVCL.MsgQuestion := FParent.MsgQuestion;
+   HDMessageDlgVCL.MsgBody     := FParent.MsgBody;
+   HDMessageDlgVCL.MsgIcon     := FParent.MsgIcon;
+   HDMessageDlgVCL.MsgType     := FParent.MsgType;
+   HDMessageDlgVCL.ShowModal;
+  finally
+    FreeAndNil(HDMessageDlgVCL);
+  end;
 end;
 
 function THDMessageVCL.DisplayQuestion: Boolean;
+var
+  HDMessageDlgVCL : THDMessageDlgVCL;
 begin
-  Result := False;
+  HDMessageDlgVCL := THDMessageDlgVCL.Create(nil);
+  try
+   HDMessageDlgVCL.MsgTitle    := FParent.MsgTitle;
+   HDMessageDlgVCL.MsgQuestion := FParent.MsgQuestion;
+   HDMessageDlgVCL.MsgBody     := FParent.MsgBody;
+   HDMessageDlgVCL.MsgIcon     := FParent.MsgIcon;
+   HDMessageDlgVCL.MsgType     := FParent.MsgType;
+   HDMessageDlgVCL.ShowModal;
+   Result := HDMessageDlgVCL.MsgResponse;
+  finally
+    FreeAndNil(HDMessageDlgVCL);
+  end;
 end;
 
 class function THDMessageVCL.New(Parent: iHDMessageOptions): iHDMessageVCL;
