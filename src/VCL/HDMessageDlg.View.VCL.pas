@@ -37,12 +37,12 @@ type
     pn_Question: TPanel;
     lbl_Question: TLabel;
     pn_BodyMessage: TPanel;
-    lbl_BodyMessage: TLabel;
     pn_Buttons: TPanel;
     pn_No: TPanel;
     btn_No: TSpeedButton;
     pn_Yes: TPanel;
     btn_Yes: TSpeedButton;
+    lbl_BodyMessage: TLabel;
     procedure btn_YesClick(Sender: TObject);
     procedure btn_NoClick(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
@@ -120,21 +120,19 @@ begin
 end;
 
 procedure THDMessageDlgVCL.FormShow(Sender: TObject);
-var
-  aResource : TResourceStream;
 begin
  MsgResponse             := False;
  btn_No.Caption          := TextButtonNo;
  lbl_Titulo.Caption      := FMsgTitle;
  lbl_Question.Caption    := FMsgQuestion;
  lbl_BodyMessage.Caption := FMsgBody;
-// imgMensagem.Picture.LoadFromStream(TResourceStream.Create(HInstance, FMsgIcon , RT_RCDATA));
 
  case FMsgType of
    tOK: TypeOK;
    tQuestion: TypeQuestion;
  end;
 
+ imgMensagem.Picture.LoadFromStream(TResourceStream.Create(HInstance, FMsgIcon , RT_RCDATA));
 end;
 
 procedure THDMessageDlgVCL.SetIcon(const Value: string);

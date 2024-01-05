@@ -160,8 +160,7 @@ object HDMessageDlgVCL: THDMessageDlgVCL
             Font.Style = []
             ParentFont = False
             WordWrap = True
-            ExplicitWidth = 120
-            ExplicitHeight = 21
+            ExplicitLeft = 6
           end
         end
         object pn_Buttons: TPanel
@@ -188,6 +187,7 @@ object HDMessageDlgVCL: THDMessageDlgVCL
               Top = 0
               Width = 160
               Height = 33
+              Cursor = crHandPoint
               Align = alClient
               Caption = 'N'#195'O (ESC)'
               Flat = True
@@ -218,6 +218,7 @@ object HDMessageDlgVCL: THDMessageDlgVCL
               Top = 0
               Width = 160
               Height = 33
+              Cursor = crHandPoint
               Align = alClient
               Caption = 'SIM (ENTER)'
               Flat = True
