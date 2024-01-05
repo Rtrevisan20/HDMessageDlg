@@ -100,30 +100,6 @@
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="src\HDMessageDlg.Consts.pas"/>
-        <RcItem Include="assets\Alert.png">
-            <ResourceType>RCDATA</ResourceType>
-            <ResourceId>Alert</ResourceId>
-        </RcItem>
-        <RcItem Include="assets\Attention.png">
-            <ResourceType>RCDATA</ResourceType>
-            <ResourceId>Attention</ResourceId>
-        </RcItem>
-        <RcItem Include="assets\Error.png">
-            <ResourceType>RCDATA</ResourceType>
-            <ResourceId>Error</ResourceId>
-        </RcItem>
-        <RcItem Include="assets\Like.png">
-            <ResourceType>RCDATA</ResourceType>
-            <ResourceId>Like</ResourceId>
-        </RcItem>
-        <RcItem Include="assets\Message.png">
-            <ResourceType>RCDATA</ResourceType>
-            <ResourceId>Message</ResourceId>
-        </RcItem>
-        <RcItem Include="assets\Question.png">
-            <ResourceType>RCDATA</ResourceType>
-            <ResourceId>Question</ResourceId>
-        </RcItem>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

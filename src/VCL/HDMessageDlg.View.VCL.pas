@@ -120,16 +120,18 @@ begin
 end;
 
 procedure THDMessageDlgVCL.FormShow(Sender: TObject);
+var
+  aResource : TResourceStream;
 begin
  MsgResponse             := False;
  btn_No.Caption          := TextButtonNo;
  lbl_Titulo.Caption      := FMsgTitle;
  lbl_Question.Caption    := FMsgQuestion;
  lbl_BodyMessage.Caption := FMsgBody;
- imgMensagem.Picture.LoadFromStream(TResourceStream.Create(HInstance, FMsgIcon , RT_RCDATA));
+// imgMensagem.Picture.LoadFromStream(TResourceStream.Create(HInstance, FMsgIcon , RT_RCDATA));
 
  case FMsgType of
-   TOK: TypeOK;
+   tOK: TypeOK;
    tQuestion: TypeQuestion;
  end;
 

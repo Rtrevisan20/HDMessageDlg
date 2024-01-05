@@ -160,7 +160,8 @@ object HDMessageDlgVCL: THDMessageDlgVCL
             Font.Style = []
             ParentFont = False
             WordWrap = True
-            ExplicitLeft = 6
+            ExplicitWidth = 120
+            ExplicitHeight = 21
           end
         end
         object pn_Buttons: TPanel
