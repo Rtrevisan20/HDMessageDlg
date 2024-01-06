@@ -30,18 +30,12 @@ package HDMessageDlg;
 requires
   rtl,
   fmx,
-  vcl,
-  vclimg,
   dbrtl;
 
 contains
   HDMessageDlg.Interfaces in 'src\HDMessageDlg.Interfaces.pas',
-  HDMessageDlg.Options in 'src\HDMessageDlg.Options.pas',
-  HDMessageDlg.Platform in 'src\HDMessageDlg.Platform.pas',
-  HDMessageDlg.Platform.FMX in 'src\HDMessageDlg.Platform.FMX.pas',
-  HDMessageDlg.Platform.VCL in 'src\HDMessageDlg.Platform.VCL.pas',
   HDMessageDlg.View.FMX in 'src\FMX\HDMessageDlg.View.FMX.pas' {HDMessageDlgFMX},
-  HDMessageDlg.View.VCL in 'src\VCL\HDMessageDlg.View.VCL.pas' {HDMessageDlgVCL},
-  HDMessageDlg.Consts in 'src\HDMessageDlg.Consts.pas';
+  HDMessageDlg.Consts in 'src\HDMessageDlg.Consts.pas',
+  HDMessageDlg in 'src\HDMessageDlg.pas';
 
 end.

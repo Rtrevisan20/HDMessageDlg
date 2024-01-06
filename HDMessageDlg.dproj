@@ -83,21 +83,13 @@
         </DelphiCompile>
         <DCCReference Include="rtl.dcp"/>
         <DCCReference Include="fmx.dcp"/>
-        <DCCReference Include="vcl.dcp"/>
-        <DCCReference Include="vclimg.dcp"/>
         <DCCReference Include="dbrtl.dcp"/>
         <DCCReference Include="src\HDMessageDlg.Interfaces.pas"/>
-        <DCCReference Include="src\HDMessageDlg.Options.pas"/>
-        <DCCReference Include="src\HDMessageDlg.Platform.pas"/>
-        <DCCReference Include="src\HDMessageDlg.Platform.FMX.pas"/>
-        <DCCReference Include="src\HDMessageDlg.Platform.VCL.pas"/>
         <DCCReference Include="src\FMX\HDMessageDlg.View.FMX.pas">
             <Form>HDMessageDlgFMX</Form>
         </DCCReference>
-        <DCCReference Include="src\VCL\HDMessageDlg.View.VCL.pas">
-            <Form>HDMessageDlgVCL</Form>
-        </DCCReference>
         <DCCReference Include="src\HDMessageDlg.Consts.pas"/>
+        <DCCReference Include="src\HDMessageDlg.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
