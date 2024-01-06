@@ -49,22 +49,6 @@ begin
    .DisplayMessage; 
 ```
 
-#### **Mensagem de Alerta**
-
-```
-var
-  MSG : iHDMessageDlg;
-begin
-  MSG := THDMessageDlg.New;  
-  MSG
-   .MsgTitle('Mensagem de Alerta')
-   .MsgQuestion('Essa é uma mensagem de Alerta?')
-   .MsgBody('Mensagem de Alerta, Mensagem de Alerta')
-   .MsgIcon(iAlert)
-   .MsgType(tOK)
-   .DisplayMessage; 
-```
-
 #### **Mensagem de Atenção**
 
 ```
