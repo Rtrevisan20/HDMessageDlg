@@ -128,12 +128,13 @@ begin
   lbl_Title.Text       := FMsgTitle;
   lbl_Question.Text    := FMsgQuestion;
   lbl_BodyMessage.Text := FMsgBody;
-  imgMenssage.Bitmap.LoadFromStream(TResourceStream.Create(HInstance, FMsgIcon ,RT_RCDATA));
 
   case FMsgType of
    tOK: TypeOk;
    tQuestion: TypeQuestion;
   end;
+
+  imgMenssage.Bitmap   := imgMenssage.MultiResBitmap.Items[FMsgIcon.ToInteger].Bitmap;
 end;
 
 procedure THDMessageDlgFMX.SetMsgIcon(const Value: string);
