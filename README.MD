@@ -92,7 +92,7 @@ begin
    .MsgTitle('Mensagem de Joia')
    .MsgQuestion('Essa é uma mensagem de Joia?')
    .MsgBody('Mensagem de Joia, Mensagem de Joia')
-   .MsgIcon(iError)
+   .MsgIcon(iLike)
    .MsgType(tOK)
    .DisplayMessage; 
 ```
