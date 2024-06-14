@@ -3,8 +3,8 @@ unit HDMessageDlg.Interfaces;
 interface
 
 type
-  TType = (tOK, tQuestion);
-  TIcon = (iAlert, iAttention, iError, iLike, iMessage, iQuestion);
+  TType = (TyOK, TyQuestion);
+  TIcon = (TiAttention, TiError, TiLike, TiMessage, TiQuestion);
 
   iHDMessageDlg = interface
     ['{206A0343-2168-418C-9AB6-8A6412F91916}']

@@ -1,0 +1,81 @@
+object Form1: TForm1
+  Left = 0
+  Top = 0
+  Caption = 'Form1'
+  ClientHeight = 143
+  ClientWidth = 742
+  Position = OwnerFormCenter
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  DesignerMasterStyle = 0
+  object BtnQuestion: TButton
+    Position.X = 20.000000000000000000
+    Position.Y = 8.000000000000000000
+    Size.Width = 132.000000000000000000
+    Size.Height = 39.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 4
+    Text = 'Question'
+    OnClick = BtnQuestionClick
+  end
+  object BtnMessage: TButton
+    Position.X = 160.000000000000000000
+    Position.Y = 8.000000000000000000
+    Size.Width = 132.000000000000000000
+    Size.Height = 39.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 3
+    Text = 'Message'
+    OnClick = BtnMessageClick
+  end
+  object Button3: TButton
+    Position.X = 300.000000000000000000
+    Position.Y = 8.000000000000000000
+    Size.Width = 132.000000000000000000
+    Size.Height = 39.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 2
+    Text = 'Button1'
+    object BtnLike: TButton
+      Size.Width = 132.000000000000000000
+      Size.Height = 39.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      Text = 'Like'
+      OnClick = BtnLikeClick
+    end
+  end
+  object BtnError: TButton
+    Position.X = 440.000000000000000000
+    Position.Y = 8.000000000000000000
+    Size.Width = 132.000000000000000000
+    Size.Height = 39.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 1
+    Text = 'Error'
+    OnClick = BtnErrorClick
+  end
+  object BtnAttention: TButton
+    Position.X = 580.000000000000000000
+    Position.Y = 8.000000000000000000
+    Size.Width = 132.000000000000000000
+    Size.Height = 39.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    Text = 'Attention'
+    OnClick = BtnAttentionClick
+  end
+  object mm: TMemo
+    Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
+    DataDetectorTypes = []
+    Position.X = 20.000000000000000000
+    Position.Y = 55.000000000000000000
+    Size.Width = 692.000000000000000000
+    Size.Height = 80.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 5
+    Viewport.Width = 688.000000000000000000
+    Viewport.Height = 76.000000000000000000
+  end
+end

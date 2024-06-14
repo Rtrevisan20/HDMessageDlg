@@ -27,27 +27,28 @@ uses
 
 type
   THDMessageDlgFMX = class(TForm)
-    RecBackGround: TRectangle;
-    LayoutContainer: TLayout;
-    LayoutTop: TLayout;
-    ReclblTitle: TRectangle;
-    lbl_Title: TLabel;
+    RecBackGround     : TRectangle;
+    LayoutContainer   : TLayout;
+    LayoutTop         : TLayout;
+    ReclblTitle       : TRectangle;
+    lbl_Title         : TLabel;
     LayoutContainerMessage: TLayout;
-    LayoutIMG: TLayout;
-    imgMenssage: TImage;
-    LayoutMessage: TLayout;
-    lbl_Question: TLabel;
-    lbl_BodyMessage: TLabel;
-    LayoutButtons: TLayout;
-    LayoutYes: TLayout;
-    BackbtnYes: TRectangle;
-    btnYes: TButton;
+    LayoutIMG         : TLayout;
+    imgMenssage       : TImage;
+    LayoutMessage     : TLayout;
+    lbl_Question      : TLabel;
+    lbl_BodyMessage   : TLabel;
+    LayoutButtons     : TLayout;
+    LayoutYes         : TLayout;
+    BackbtnYes        : TRectangle;
+    btnYes            : TButton;
     ShadowEffectBtnSim: TShadowEffect;
-    LayoutNo: TLayout;
-    BackbtnNo: TRectangle;
-    btnNo: TButton;
+    LayoutNo          : TLayout;
+    BackbtnNo         : TRectangle;
+    btnNo             : TButton;
     ShadowEffectBtnNao: TShadowEffect;
-    StyleBook: TStyleBook;
+    StyleBook         : TStyleBook;
+    PathIconSVG: TPath;
     procedure FormKeyDown(Sender: TObject; var Key: Word; var KeyChar: Char;
       Shift: TShiftState);
     procedure FormShow(Sender: TObject);
@@ -55,11 +56,12 @@ type
     procedure btnYesClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
   private
-    FMsgTitle: string;
+    FMsgTitle   : string;
     FMsgQuestion: string;
-    FMsgBody: string;
-    FMsgType: TType;
-    FMsgIcon: string;
+    FMsgBody    : string;
+    FMsgType    : TType;
+    FMsgIcon    : string;
+    FColorSvgIcon: TAlphaColor;
     procedure SetMsgIcon(const Value: string);
     procedure SetMsgBody(const Value: string);
     procedure SetMsgQuestion(const Value: string);
@@ -72,18 +74,17 @@ type
   public
     MsgResponse : Boolean;
   published
-    property MsgTitle : string read FMsgTitle write SetMsgTitle;
-    property MsgQuestion : string read FMsgQuestion write SetMsgQuestion;
-    property MsgBody : string read FMsgBody write SetMsgBody;
-    property MsgIcon : string read FMsgIcon write SetMsgIcon;
-    property MsgType : TType read FMsgType write SetMsgType;
+    property MsgTitle    : string      read FMsgTitle     write SetMsgTitle;
+    property MsgQuestion : string      read FMsgQuestion  write SetMsgQuestion;
+    property MsgBody     : string      read FMsgBody      write SetMsgBody;
+    property MsgIcon     : string      read FMsgIcon      write SetMsgIcon;
+    property MsgType     : TType       read FMsgType      write SetMsgType;
+    property ColorSvgIcon: TAlphaColor read FColorSvgIcon write FColorSvgIcon;
   end;
 
 implementation
 
 {$R *.fmx}
-
-{ TViewMensagem }
 
 procedure THDMessageDlgFMX.btnNoClick(Sender: TObject);
 begin
@@ -130,11 +131,13 @@ begin
   lbl_BodyMessage.Text := FMsgBody;
 
   case FMsgType of
-   tOK: TypeOk;
-   tQuestion: TypeQuestion;
+   TyOK      : TypeOk;
+   TyQuestion: TypeQuestion;
   end;
-
-  imgMenssage.Bitmap   := imgMenssage.MultiResBitmap.Items[FMsgIcon.ToInteger].Bitmap;
+  PathIconSVG.Fill.Color := FColorSvgIcon;
+  PathIconSVG.WrapMode   := TPathWrapMode.Fit;
+  PathIconSVG.Data.Data  := FMsgIcon;
+//  imgMenssage.Bitmap    := imgMenssage.MultiResBitmap.Items[FMsgIcon.ToInteger].Bitmap;
 end;
 
 procedure THDMessageDlgFMX.SetMsgIcon(const Value: string);
@@ -177,14 +180,14 @@ end;
 procedure THDMessageDlgFMX.TypeOk;
 begin
   LayoutNo.Visible := False;
-  btnYes.Text := TextButtonOK;
+  btnYes.Text      := TextButtonOK;
 end;
 
 procedure THDMessageDlgFMX.TypeQuestion;
 begin
-  LayoutNo.Visible := True;
-  btnYes.Text := TextButtonYes;
-  BackbtnYes.Fill.Color := TAlphaColor($FFEF553B);
+  LayoutNo.Visible      := True;
+  btnYes.Text           := TextButtonYes;
+  BackbtnYes.Fill.Color := TAlphaColor(FMXColorButtonYes);//($FFEF553B);
 end;
 
 end.

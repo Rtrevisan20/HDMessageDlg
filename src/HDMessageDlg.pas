@@ -5,36 +5,37 @@ interface
 uses
   Data.DB,
 
+  HDMessageDlg.IconsSVG,
   HDMessageDlg.Interfaces,
   HDMessageDlg.View.FMX,
 
   System.Classes,
-  System.SysUtils;
+  System.SysUtils,
+  System.UITypes;
 
 type
   THDMessageDlg = class(TInterfacedObject, iHDMessageDlg)
   private
-    FMsgTitle: String;
-    FMsgQuestion: String;
-    FMsgBody: String;
-    FMsgIcon: string;
-    FMsgType: TType;
+    FMsgTitle     : String;
+    FMsgQuestion  : String;
+    FMsgBody      : String;
+    FMsgIcon      : string;
+    FMsgType      : TType;
+    FColorSvgIcon : TAlphaColor;
   public
     constructor Create;
     destructor Destroy; override;
     class function New: iHDMessageDlg;
-    function MsgTitle(aValue: String): iHDMessageDlg;
+    function MsgTitle(aValue: String)   : iHDMessageDlg;
     function MsgQuestion(aValue: String): iHDMessageDlg;
-    function MsgBody(aValue: String): iHDMessageDlg;
-    function MsgIcon(aValue: TIcon): iHDMessageDlg;
-    function MsgType(aValue: TType): iHDMessageDlg;
-    function DisplayMessage: iHDMessageDlg;
-    function DisplayQuestion: Boolean;
+    function MsgBody(aValue: String)    : iHDMessageDlg;
+    function MsgIcon(aValue: TIcon)     : iHDMessageDlg;
+    function MsgType(aValue: TType)     : iHDMessageDlg;
+    function DisplayMessage             : iHDMessageDlg;
+    function DisplayQuestion            : Boolean;
   end;
 
 implementation
-
-{ THDMessageDlg }
 
 constructor THDMessageDlg.Create;
 begin
@@ -57,6 +58,7 @@ begin
    HDMessageDlgFMX.MsgBody     := FMsgBody;
    HDMessageDlgFMX.MsgIcon     := FMsgIcon;
    HDMessageDlgFMX.MsgType     := FMsgType;
+   HDMessageDlgFMX.ColorSvgIcon:= FColorSvgIcon;
    HDMessageDlgFMX.ShowModal;
   finally
    FreeAndNil(HDMessageDlgFMX);
@@ -75,6 +77,7 @@ begin
    HDMessageDlgFMX.MsgBody     := FMsgBody;
    HDMessageDlgFMX.MsgIcon     := FMsgIcon;
    HDMessageDlgFMX.MsgType     := FMsgType;
+   HDMessageDlgFMX.ColorSvgIcon:= FColorSvgIcon;
    HDMessageDlgFMX.ShowModal;
    Result := HDMessageDlgFMX.MsgResponse;
   finally
@@ -92,12 +95,31 @@ function THDMessageDlg.MsgIcon(aValue: TIcon): iHDMessageDlg;
 begin
   Result := Self;
   case aValue of
-    iAlert:     FMsgIcon := '0';
-    iAttention: FMsgIcon := '1';
-    iError:     FMsgIcon := '2';
-    iLike:      FMsgIcon := '3';
-    iMessage:   FMsgIcon := '4';
-    iQuestion:  FMsgIcon := '5';
+   TiAttention:
+     begin
+      FMsgIcon := THDMessageDlgIconsSVG.Icon(aValue);
+      FColorSvgIcon := THDMessageDlgIconsSVG.ColorSvgIcon(aValue);
+     end;
+   TiError:
+     begin
+      FMsgIcon := THDMessageDlgIconsSVG.Icon(aValue);
+      FColorSvgIcon := THDMessageDlgIconsSVG.ColorSvgIcon(aValue);
+     end;
+   TiLike:
+     begin
+      FMsgIcon := THDMessageDlgIconsSVG.Icon(aValue);
+      FColorSvgIcon := THDMessageDlgIconsSVG.ColorSvgIcon(aValue);
+     end;
+   TiMessage:
+     begin
+      FMsgIcon := THDMessageDlgIconsSVG.Icon(aValue);
+      FColorSvgIcon := THDMessageDlgIconsSVG.ColorSvgIcon(aValue);
+     end;
+   TiQuestion:
+     begin
+      FMsgIcon := THDMessageDlgIconsSVG.Icon(aValue);
+      FColorSvgIcon := THDMessageDlgIconsSVG.ColorSvgIcon(aValue);
+     end;
   end;
 end;
 

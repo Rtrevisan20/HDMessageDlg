@@ -29,7 +29,6 @@ const
   FMXLabelBodyMessage = $FF555962;
   FMXTextButtonNo     = $FFFFFFFF;
   FMXTextButtonYes    = $FFFFFFFF;
-
 implementation
 
 end.
