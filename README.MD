@@ -35,7 +35,8 @@ uses HDMessageDlg.Interfaces, HDMessageDlg;
 
 #### **Mensagem de Alerta**
 
-```
+```delphi
+begin
 var
   MSG : iHDMessageDlg;
 begin
@@ -47,11 +48,13 @@ begin
    .MsgIcon(iAlert)
    .MsgType(tOK)
    .DisplayMessage; 
+end;   
 ```
 
 #### **Mensagem de Atenção**
 
-```
+```delphi
+begin
 var
   MSG : iHDMessageDlg;
 begin
@@ -63,11 +66,13 @@ begin
    .MsgIcon(iAttention)
    .MsgType(tOK)
    .DisplayMessage;
+end;   
 ```
 
 #### **Mensagem de Erro**
 
-```
+```delphi
+begin
 var
   MSG : iHDMessageDlg;
 begin
@@ -79,11 +84,13 @@ begin
    .MsgIcon(iError)
    .MsgType(tOK)
    .DisplayMessage;
+end;
 ```
 
 #### **Mensagem de Joia**
 
-```
+```delphi
+begin
 var
   MSG : iHDMessageDlg;
 begin
@@ -95,11 +102,13 @@ begin
    .MsgIcon(iLike)
    .MsgType(tOK)
    .DisplayMessage; 
+end;
 ```
 
 #### **Apenas uma Mensagem**
 
-```
+```delphi
+begin
 var
   MSG : iHDMessageDlg;
 begin
@@ -110,12 +119,14 @@ begin
    .MsgBody('Essa é apenas uma Mensagem, Essa é apenas uma Mensagem')
    .MsgIcon(iMessage)
    .MsgType(tOK)
-   .DisplayMessage; 
+   .DisplayMessage;
+end; 
 ```
 
 #### **Mensagem de Pergunta**
 
-```
+```delphi
+begin
 var
   MSG : iHDMessageDlg;
 begin
@@ -127,4 +138,5 @@ begin
    .MsgIcon(iMessage)
    .MsgType(tQuestion)
    .DisplayQuestion;
+end;   
 ```
