@@ -34,7 +34,7 @@ object HDMessageDlgFMX: THDMessageDlgFMX
         Size.Height = 40.000000000000000000
         Size.PlatformDefault = False
         TabOrder = 0
-        object ReclblTitle: TRectangle
+        object RecLblTitle: TRectangle
           Align = Client
           Fill.Color = xFF086FFB
           Size.Width = 580.000000000000000000

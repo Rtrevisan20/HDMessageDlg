@@ -23,7 +23,6 @@ const
   FMXColorTop         = $FF086FFB;
   FMXColorButtonNo    = $FF086FFB;
   FMXColorButtonYes   = $FF0CA950;
-  FMXColorBackuground = $FFD7D8DB;
   FMXLabelTitle       = $FFFFFFFF;
   FMXLabelQuestion    = $FF086FFB;
   FMXLabelBodyMessage = $FF555962;

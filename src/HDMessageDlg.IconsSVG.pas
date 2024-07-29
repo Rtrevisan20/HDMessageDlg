@@ -17,6 +17,7 @@ type
   public
     class function Icon(ATipo : TIcon) : string;
     class function ColorSvgIcon(ATipo : TIcon) : TAlphaColor;
+    class function ColorBackuground(ATipo : TIcon) : TAlphaColor;
   end;
 
 const
@@ -49,14 +50,34 @@ const
   '1.26,0,0,1,4.22,15l1.61-2.42A1,1,0,0,0,6,12V9a6,6,0,0,1,6-6,6.07,6.07,0,0,1,2.31.47A3.91,'+
   '3.91,0,0,0,14,5a4,4,0,0,0,4,4v3a1,1,0,0,0,.17.55L19.78,15a1.2,1.2,0,0,1,.22.72A1.3,1.3,0,0,1,18.7,17Z';
   //Colors SVG
-  CColorSvgError     = $FFD54309;
-  CColorSvgAttention = $FFFFBE2E;
-  CColorSvgLike      = $FF00BDE3;
-  CColorSvgQuestion  = $FF9C3D10;
-  CColorSvgMessage   = $FF00BDE3;
-  CColorSvgDefault   = $FF086FFB;
+  CColorSvgError             = $FFD54309;
+  CColorSvgAttention         = $FFFFBE2E;
+  CColorSvgLike              = $FF00BDE3;
+  CColorSvgQuestion          = $FF9C3D10;
+  CColorSvgMessage           = $FF00BDE3;
+  CColorSvgDefault           = $FF086FFB;
+
+  CColorBackugroundAttention = $FFFAF3D1;
+  CColorBackugroundError     = $FFF4E3DB;
+  CColorBackugroundLike      = $FFE7F6F8;
+  CColorBackugroundMessage   = $FFE7F6F8;
+  CColorBackugroundQuestion  = $FFF4E3DB;
+  CColorBackugroundDefault   = $FFD7D8DB;
+
 
 implementation
+
+class function THDMessageDlgIconsSVG.ColorBackuground(ATipo: TIcon): TAlphaColor;
+begin
+  Result := CColorBackugroundDefault;
+  case ATipo of
+    TiAttention : Result := CColorBackugroundAttention;
+    TiError     : Result := CColorBackugroundError;
+    TiLike      : Result := CColorBackugroundLike;
+    TiMessage   : Result := CColorBackugroundMessage;
+    TiQuestion  : Result := CColorBackugroundQuestion;
+  end;
+end;
 
 class function THDMessageDlgIconsSVG.ColorSvgIcon(ATipo: TIcon): TAlphaColor;
 begin

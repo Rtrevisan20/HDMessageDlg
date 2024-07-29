@@ -3,11 +3,22 @@ unit Samples.Principal;
 interface
 
 uses
-  System.SysUtils, System.Types, System.UITypes, System.Classes,
-  System.Variants,
-  FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs,
+  FMX.Controls,
   FMX.Controls.Presentation,
-  FMX.StdCtrls, FMX.Memo.Types, FMX.ScrollBox, FMX.Memo;
+  FMX.Dialogs,
+  FMX.Forms,
+  FMX.Graphics,
+  FMX.Memo,
+  FMX.Memo.Types,
+  FMX.ScrollBox,
+  FMX.StdCtrls,
+  FMX.Types,
+
+  System.Classes,
+  System.SysUtils,
+  System.Types,
+  System.UITypes,
+  System.Variants;
 
 type
   TForm1 = class(TForm)
@@ -34,11 +45,11 @@ var
 
 implementation
 
-{$R *.fmx}
-
 uses
   HDMessageDlg,
   HDMessageDlg.Interfaces;
+{$R *.fmx}
+
 
 procedure TForm1.BtnAttentionClick(Sender: TObject);
 var
