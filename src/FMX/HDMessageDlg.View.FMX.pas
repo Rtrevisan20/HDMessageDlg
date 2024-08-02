@@ -52,6 +52,8 @@ type
     procedure btnNoClick(Sender: TObject);
     procedure btnYesClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure RecLblTitleMouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X,
+      Y: Single);
   private
     FMsgTitle         : string;
     FMsgQuestion      : string;
@@ -140,6 +142,12 @@ begin
    TyOK      : TypeOk;
    TyQuestion: TypeQuestion;
   end;
+end;
+
+procedure THDMessageDlgFMX.RecLblTitleMouseDown(Sender: TObject; Button: TMouseButton;
+  Shift: TShiftState; X, Y: Single);
+begin
+  if (Button = TMouseButton.mbLeft) then StartWindowDrag;
 end;
 
 procedure THDMessageDlgFMX.SetMsgIcon(const Value: string);

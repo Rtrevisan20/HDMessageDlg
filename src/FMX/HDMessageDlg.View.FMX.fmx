@@ -43,6 +43,7 @@ object HDMessageDlgFMX: THDMessageDlgFMX
           Stroke.Color = claNull
           XRadius = 3.000000000000000000
           YRadius = 3.000000000000000000
+          OnMouseDown = RecLblTitleMouseDown
           object lbl_Title: TLabel
             Align = Client
             StyledSettings = []
