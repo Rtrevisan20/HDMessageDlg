@@ -13,13 +13,10 @@ uses
   FMX.Objects,
   FMX.StdCtrls,
   FMX.Types,
-
   HDMessageDlg.Interfaces,
-
   System.Classes,
   System.SysUtils,
   System.UITypes,
-
   Winapi.Windows;
 
 type
