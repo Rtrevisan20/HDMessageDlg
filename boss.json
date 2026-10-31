@@ -1,0 +1,9 @@
+{
+  "name": "hdmessagedlg",
+  "description": "Message Dialog for Delphi",
+  "version": "1.2.3",
+  "homepage": "https://github.com/Rtrevisan20/HDMessageDlg",
+  "mainsrc": "src",
+  "projects": [],
+  "dependencies": {}
+}
