@@ -41,9 +41,29 @@ ou por diálogo:
 
 ```delphi
 Msg.MsgLanguage(lgEnglish)
+   .MsgTitle('...')
+   ...
 ```
 
-Idiomas suportados: `lgPortuguese` (padrão), `lgEnglish`.
+Exemplo completo (inglês):
+
+```delphi
+var
+  MSG : IHDMessageDlg;
+begin
+  MSG := THDMessageDlg.New;
+  MSG
+   .MsgTitle('Confirmation')
+   .MsgQuestion('Do you want to continue?')
+   .MsgBody('Choose one of the options.')
+   .MsgIcon(TiQuestion)
+   .MsgType(TyQuestion)
+   .MsgLanguage(lgEnglish)
+   .DisplayQuestion;
+end;
+```
+
+Idiomas suportados: `lgPortuguese` (padrão), `lgEnglish`. Para novos idiomas, basta incluir um valor em `TLanguage` e os textos correspondentes em `Consts.pas`.
 
 ## **Tipos de Uso**
 
