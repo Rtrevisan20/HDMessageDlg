@@ -2,12 +2,10 @@
 
 interface
 
-const
-  //button Text
-  TextButtonYes = 'SIM (ENTER)';
-  TextButtonNo  = 'NÃO (ESC)';
-  TextButtonOK  = 'OK (ENTER)';
+uses
+  HDMessageDlg.Interfaces;
 
+const
   //Colors FMX
   FMXColorTop         = $FF086FFB;
   FMXColorButtonNo    = $FF086FFB;
@@ -18,6 +16,33 @@ const
   FMXTextButtonNo     = $FFFFFFFF;
   FMXTextButtonYes    = $FFFFFFFF;
 
+function TextButtonYes(aLanguage: TLanguage): string;
+function TextButtonNo(aLanguage: TLanguage): string;
+function TextButtonOK(aLanguage: TLanguage): string;
+
 implementation
+
+function TextButtonYes(aLanguage: TLanguage): string;
+begin
+  case aLanguage of
+    lgEnglish: Result := 'YES (ENTER)';
+  else
+    Result := 'SIM (ENTER)';
+  end;
+end;
+
+function TextButtonNo(aLanguage: TLanguage): string;
+begin
+  case aLanguage of
+    lgEnglish: Result := 'NO (ESC)';
+  else
+    Result := 'NÃO (ESC)';
+  end;
+end;
+
+function TextButtonOK(aLanguage: TLanguage): string;
+begin
+  Result := 'OK (ENTER)';
+end;
 
 end.

@@ -28,6 +28,23 @@ Adicione as seguintes pastas ao seu projeto, em *Project > Options > Delphi Comp
 uses HDMessageDlg.Interfaces, HDMessageDlg;
 ``` 
 
+## **Idioma dos botões**
+
+Por padrão os botões são exibidos em português (`SIM (ENTER)`, `NÃO (ESC)`, `OK (ENTER)`).
+Para inglês, defina o idioma global uma vez na aplicação:
+
+```delphi
+THDMessageDlg.DefaultLanguage := lgEnglish;
+```
+
+ou por diálogo:
+
+```delphi
+Msg.MsgLanguage(lgEnglish)
+```
+
+Idiomas suportados: `lgPortuguese` (padrão), `lgEnglish`.
+
 ## **Tipos de Uso**
 
 #### **Mensagem de Alerta**

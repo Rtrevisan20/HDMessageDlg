@@ -58,6 +58,7 @@ type
     FColorSvgIcon     : TAlphaColor;
     FMsgResponse      : Boolean;
     FColorBackuground : TAlphaColor;
+    FLanguage         : TLanguage;
     procedure SetMsgIcon(const Value: string);
     procedure SetMsgBody(const Value: string);
     procedure SetMsgQuestion(const Value: string);
@@ -74,6 +75,7 @@ type
     property MsgIcon          : string      read FMsgIcon          write SetMsgIcon;
     property MsgResponse      : Boolean     read FMsgResponse;
     property MsgType          : TType       read FMsgType          write SetMsgType;
+    property Language         : TLanguage   read FLanguage         write FLanguage;
     property ColorSvgIcon     : TAlphaColor read FColorSvgIcon     write FColorSvgIcon;
     property ColorBackuground : TAlphaColor read FColorBackuground write FColorBackuground;
   end;
@@ -106,6 +108,7 @@ begin
   lbl_BodyMessage.FontColor  := TAlphaColor(FMXLabelBodyMessage);
   btnNo.FontColor            := TAlphaColor(FMXTextButtonNo);
   btnYes.FontColor           := TAlphaColor(FMXTextButtonYes);
+  FLanguage                  := lgPortuguese;
 end;
 
 procedure THDMessageDlgFMX.FormKeyDown(Sender: TObject; var Key: Word;
@@ -189,14 +192,14 @@ end;
 procedure THDMessageDlgFMX.TypeOk;
 begin
   LayoutNo.Visible := False;
-  btnYes.Text      := TextButtonOK;
+  btnYes.Text      := TextButtonOK(FLanguage);
 end;
 
 procedure THDMessageDlgFMX.TypeQuestion;
 begin
   LayoutNo.Visible      := True;
-  btnYes.Text           := TextButtonYes;
-  btnNo.Text            := TextButtonNo;
+  btnYes.Text           := TextButtonYes(FLanguage);
+  btnNo.Text            := TextButtonNo(FLanguage);
   BackbtnYes.Fill.Color := TAlphaColor(FMXColorButtonYes);
 end;
 

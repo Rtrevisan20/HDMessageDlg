@@ -21,15 +21,18 @@ type
     FMsgType          : TType;
     FColorSvgIcon     : TAlphaColor;
     FColorBackuground : TAlphaColor;
+    FLanguage        : TLanguage;
     function CreateForm: THDMessageDlgFMX;
   public
+    class var DefaultLanguage: TLanguage;
     constructor Create;
     class function New: iHDMessageDlg;
     function MsgTitle(aValue: String)   : iHDMessageDlg;
     function MsgQuestion(aValue: String): iHDMessageDlg;
     function MsgBody(aValue: String)    : iHDMessageDlg;
-    function MsgIcon(aValue: TIcon)     : iHDMessageDlg;
-    function MsgType(aValue: TType)     : iHDMessageDlg;
+    function MsgIcon(aValue: TIcon)         : iHDMessageDlg;
+    function MsgType(aValue: TType)         : iHDMessageDlg;
+    function MsgLanguage(aValue: TLanguage) : iHDMessageDlg;
     function DisplayMessage             : iHDMessageDlg;
     function DisplayQuestion            : Boolean;
   end;
@@ -44,6 +47,7 @@ begin
   Result.MsgBody          := FMsgBody;
   Result.MsgIcon          := FMsgIcon;
   Result.MsgType          := FMsgType;
+  Result.Language         := FLanguage;
   Result.ColorSvgIcon     := FColorSvgIcon;
   Result.ColorBackuground := FColorBackuground;
 end;
@@ -106,6 +110,12 @@ begin
   FMsgType := aValue;
 end;
 
+function THDMessageDlg.MsgLanguage(aValue: TLanguage): iHDMessageDlg;
+begin
+  Result    := Self;
+  FLanguage := aValue;
+end;
+
 constructor THDMessageDlg.Create;
 begin
   inherited;
@@ -113,11 +123,15 @@ begin
   FMsgIcon          := THDMessageDlgIconsSVG.Icon(TiMessage);
   FColorSvgIcon     := THDMessageDlgIconsSVG.ColorSvgIcon(TiMessage);
   FColorBackuground := THDMessageDlgIconsSVG.ColorBackuground(TiMessage);
+  FLanguage         := DefaultLanguage;
 end;
 
 class function THDMessageDlg.New: iHDMessageDlg;
 begin
   Result := Self.Create;
 end;
+
+initialization
+  THDMessageDlg.DefaultLanguage := lgPortuguese;
 
 end.
