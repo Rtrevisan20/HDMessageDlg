@@ -16,8 +16,7 @@ uses
   HDMessageDlg.Interfaces,
   System.Classes,
   System.SysUtils,
-  System.UITypes,
-  Winapi.Windows;
+  System.UITypes;
 
 type
   THDMessageDlgFMX = class(TForm)
@@ -28,7 +27,6 @@ type
     lbl_Title         : TLabel;
     LayoutContainerMessage: TLayout;
     LayoutIMG         : TLayout;
-    imgMenssage       : TImage;
     LayoutMessage     : TLayout;
     lbl_Question      : TLabel;
     lbl_BodyMessage   : TLabel;
@@ -69,13 +67,12 @@ type
     procedure TypeQuestion;
     procedure SetNo;
     procedure SetYes;
-  public
   published
     property MsgTitle         : string      read FMsgTitle         write SetMsgTitle;
     property MsgQuestion      : string      read FMsgQuestion      write SetMsgQuestion;
     property MsgBody          : string      read FMsgBody          write SetMsgBody;
     property MsgIcon          : string      read FMsgIcon          write SetMsgIcon;
-    property MsgResponse      : Boolean     read FMsgResponse      write FMsgResponse;
+    property MsgResponse      : Boolean     read FMsgResponse;
     property MsgType          : TType       read FMsgType          write SetMsgType;
     property ColorSvgIcon     : TAlphaColor read FColorSvgIcon     write FColorSvgIcon;
     property ColorBackuground : TAlphaColor read FColorBackuground write FColorBackuground;
@@ -101,11 +98,12 @@ end;
 procedure THDMessageDlgFMX.FormCreate(Sender: TObject);
 begin
   // Set Color
+  RecLblTitle.Fill.Color     := TAlphaColor(FMXColorTop);
   BackbtnNo.Fill.Color       := TAlphaColor(FMXColorButtonNo);
   BackbtnYes.Fill.Color      := TAlphaColor(FMXColorButtonYes);
   lbl_Title.FontColor        := TAlphaColor(FMXLabelTitle);
   lbl_Question.FontColor     := TAlphaColor(FMXLabelQuestion);
-  lbl_BodyMessage.FontColor  := TAlphaColor(FMXLabelQuestion);
+  lbl_BodyMessage.FontColor  := TAlphaColor(FMXLabelBodyMessage);
   btnNo.FontColor            := TAlphaColor(FMXTextButtonNo);
   btnYes.FontColor           := TAlphaColor(FMXTextButtonYes);
 end;
@@ -113,26 +111,30 @@ end;
 procedure THDMessageDlgFMX.FormKeyDown(Sender: TObject; var Key: Word;
   var KeyChar: Char; Shift: TShiftState);
 begin
-  if LayoutYes.Visible then
-   if Key = VK_RETURN then
+  if LayoutYes.Visible and (Key = vkReturn) then
+  begin
+    Key     := 0;
+    KeyChar := #0;
     SetYes;
+    Exit;
+  end;
 
- if LayoutNo.Visible then
-   if Key = VK_ESCAPE then
+  if LayoutNo.Visible and (Key = vkEscape) then
+  begin
+    Key     := 0;
+    KeyChar := #0;
     SetNo;
+  end;
 end;
 
 procedure THDMessageDlgFMX.FormShow(Sender: TObject);
 begin
   FMsgResponse             := False;
-  btnNo.Text               := TextButtonNo;
   lbl_Title.Text           := FMsgTitle;
   lbl_Question.Text        := FMsgQuestion;
   lbl_BodyMessage.Text     := FMsgBody;
   RecBackGround.Fill.Color := TAlphaColor(FColorBackuground);
-  RecLblTitle.Fill.Color   := TAlphaColor(FColorSvgIcon);
   PathIconSVG.Fill.Color   := FColorSvgIcon;
-  PathIconSVG.WrapMode     := TPathWrapMode.Fit;
   PathIconSVG.Data.Data    := FMsgIcon;
 
   case FMsgType of

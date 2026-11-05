@@ -1,4 +1,4 @@
-unit HDMessageDlg.Interfaces;
+﻿unit HDMessageDlg.Interfaces;
 
 interface
 

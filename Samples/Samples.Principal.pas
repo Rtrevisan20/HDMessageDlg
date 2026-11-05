@@ -1,4 +1,4 @@
-unit Samples.Principal;
+ï»¿unit Samples.Principal;
 
 interface
 
@@ -24,7 +24,6 @@ type
   TForm1 = class(TForm)
     BtnQuestion: TButton;
     BtnMessage: TButton;
-    Button3: TButton;
     BtnLike: TButton;
     BtnError: TButton;
     BtnAttention: TButton;
@@ -58,9 +57,9 @@ begin
   Msg := THDMessageDlg.New;
 
   Msg
-   .MsgTitle('Essa é uma mensagem')
+   .MsgTitle('Essa Ã© uma mensagem')
    .MsgQuestion('')
-   .MsgBody('Atenção isso pode não dar certo!!!')
+   .MsgBody('AtenÃ§Ã£o isso pode nÃ£o dar certo!!!')
    .MsgIcon(TiAttention)
    .MsgType(TyOK)
    .DisplayMessage;
@@ -73,9 +72,9 @@ begin
   Msg := THDMessageDlg.New;
 
   Msg
-   .MsgTitle('Essa é uma mensagem')
+   .MsgTitle('Essa Ã© uma mensagem')
    .MsgQuestion('')
-   .MsgBody('Não deu nada certo, não precisa se desesperar!')
+   .MsgBody('NÃ£o deu nada certo, nÃ£o precisa se desesperar!')
    .MsgIcon(TiError)
    .MsgType(TyOK)
    .DisplayMessage;
@@ -88,7 +87,7 @@ begin
   Msg := THDMessageDlg.New;
 
   Msg
-   .MsgTitle('Essa é uma mensagem')
+   .MsgTitle('Essa Ã© uma mensagem')
    .MsgQuestion('')
    .MsgBody('Deu tudo certo, pode ficar tranquilo!')
    .MsgIcon(TiLike)
@@ -103,9 +102,9 @@ begin
   Msg := THDMessageDlg.New;
 
   Msg
-   .MsgTitle('Essa é uma mensagem')
+   .MsgTitle('Essa Ã© uma mensagem')
    .MsgQuestion('')
-   .MsgBody('Isso é apenas uma informação para você!')
+   .MsgBody('Isso Ã© apenas uma informaÃ§Ã£o para vocÃª!')
    .MsgIcon(TiMessage)
    .MsgType(TyOK)
    .DisplayMessage;
@@ -118,14 +117,14 @@ begin
   Msg := THDMessageDlg.New;
  if
   Msg
-   .MsgTitle('Essa é uma pergunta')
+   .MsgTitle('Essa Ã© uma pergunta')
    .MsgQuestion('Deseja Continuar?')
-   .MsgBody('Selecione uma das opções')
+   .MsgBody('Selecione uma das opÃ§Ãµes')
    .MsgIcon(TiQuestion)
    .MsgType(TyQuestion)
    .DisplayQuestion then
-   mm.Lines.Add('Você selecionou Sim') else
-   mm.Lines.Add('Você selecionou Não');
+   mm.Lines.Add('VocÃª selecionou Sim') else
+   mm.Lines.Add('VocÃª selecionou NÃ£o');
 end;
 
 end.

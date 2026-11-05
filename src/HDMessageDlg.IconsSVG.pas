@@ -1,10 +1,8 @@
-unit HDMessageDlg.IconsSVG;
+﻿unit HDMessageDlg.IconsSVG;
 
 interface
 
 uses
-  Data.DB,
-
   HDMessageDlg.Interfaces,
 
   System.Classes,
@@ -86,8 +84,8 @@ begin
     TiAttention: Result := CColorSvgAttention;
     TiError:     Result := CColorSvgError;
     TiLike:      Result := CColorSvgLike;
-    TiMessage:   Result := CColorSvgQuestion;
-    TiQuestion:  Result := CColorSvgMessage;
+    TiMessage:   Result := CColorSvgMessage;
+    TiQuestion:  Result := CColorSvgQuestion;
   end;
 end;
 
@@ -99,6 +97,8 @@ begin
     TiLike      : Result := CIconLike;
     TiMessage   : Result := CIconMessage;
     TiQuestion  : Result := CIconQuestion;
+    else
+      Result := '';
   end;
 end;
 

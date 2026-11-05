@@ -20,9 +20,6 @@ Adicione as seguintes pastas ao seu projeto, em *Project > Options > Delphi Comp
 ../hdmessagedlg/src/FMX
 ```
 
-<!-- #### Samples
-  * Veja alguns exemplos: [samples](https://github.com/dliocode/datavalidator/tree/v2/samples) -->
-
 ## Como usar
 
 #### **Uses necessárias**
@@ -36,7 +33,6 @@ uses HDMessageDlg.Interfaces, HDMessageDlg;
 #### **Mensagem de Alerta**
 
 ```delphi
-begin
 var
   MSG : iHDMessageDlg;
 begin
@@ -45,8 +41,8 @@ begin
    .MsgTitle('Mensagem de Alerta')
    .MsgQuestion('Essa é uma mensagem de Alerta?')
    .MsgBody('Mensagem de Alerta, Mensagem de Alerta')
-   .MsgIcon(iAlert)
-   .MsgType(tOK)
+   .MsgIcon(TiAttention)
+   .MsgType(TyOK)
    .DisplayMessage; 
 end;   
 ```
@@ -54,7 +50,6 @@ end;
 #### **Mensagem de Atenção**
 
 ```delphi
-begin
 var
   MSG : iHDMessageDlg;
 begin
@@ -63,8 +58,8 @@ begin
    .MsgTitle('Mensagem de Atenção')
    .MsgQuestion('Essa é uma mensagem de Atenção?')
    .MsgBody('Mensagem de Atenção, Mensagem de Atenção')
-   .MsgIcon(iAttention)
-   .MsgType(tOK)
+   .MsgIcon(TiAttention)
+   .MsgType(TyOK)
    .DisplayMessage;
 end;   
 ```
@@ -72,7 +67,6 @@ end;
 #### **Mensagem de Erro**
 
 ```delphi
-begin
 var
   MSG : iHDMessageDlg;
 begin
@@ -81,8 +75,8 @@ begin
    .MsgTitle('Mensagem de Erro')
    .MsgQuestion('Essa é uma mensagem de Erro?')
    .MsgBody('Mensagem de Erro, Mensagem de Erro')
-   .MsgIcon(iError)
-   .MsgType(tOK)
+   .MsgIcon(TiError)
+   .MsgType(TyOK)
    .DisplayMessage;
 end;
 ```
@@ -90,7 +84,6 @@ end;
 #### **Mensagem de Joia**
 
 ```delphi
-begin
 var
   MSG : iHDMessageDlg;
 begin
@@ -99,8 +92,8 @@ begin
    .MsgTitle('Mensagem de Joia')
    .MsgQuestion('Essa é uma mensagem de Joia?')
    .MsgBody('Mensagem de Joia, Mensagem de Joia')
-   .MsgIcon(iLike)
-   .MsgType(tOK)
+   .MsgIcon(TiLike)
+   .MsgType(TyOK)
    .DisplayMessage; 
 end;
 ```
@@ -108,7 +101,6 @@ end;
 #### **Apenas uma Mensagem**
 
 ```delphi
-begin
 var
   MSG : iHDMessageDlg;
 begin
@@ -117,8 +109,8 @@ begin
    .MsgTitle('Essa é apenas uma Mensagem')
    .MsgQuestion('Essa é uma mensagem?')
    .MsgBody('Essa é apenas uma Mensagem, Essa é apenas uma Mensagem')
-   .MsgIcon(iMessage)
-   .MsgType(tOK)
+   .MsgIcon(TiMessage)
+   .MsgType(TyOK)
    .DisplayMessage;
 end; 
 ```
@@ -126,7 +118,6 @@ end;
 #### **Mensagem de Pergunta**
 
 ```delphi
-begin
 var
   MSG : iHDMessageDlg;
 begin
@@ -135,8 +126,8 @@ begin
    .MsgTitle('Mensagem de Pergunta')
    .MsgQuestion('Em qual opção você vai clicar?')
    .MsgBody('Escolha uma das opções por favor!')
-   .MsgIcon(iMessage)
-   .MsgType(tQuestion)
+   .MsgIcon(TiMessage)
+   .MsgType(TyQuestion)
    .DisplayQuestion;
 end;   
 ```

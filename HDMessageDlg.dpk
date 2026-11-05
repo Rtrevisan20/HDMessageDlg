@@ -29,8 +29,7 @@ package HDMessageDlg;
 
 requires
   rtl,
-  fmx,
-  dbrtl;
+  fmx;
 
 contains
   HDMessageDlg.Interfaces in 'src\HDMessageDlg.Interfaces.pas',

@@ -68,3 +68,5 @@ __recovery/
 modules/
 Samples/Application
 Samples/Dcus
+# Delphi IDE state files (absolute paths, user-specific)
+*.dsv

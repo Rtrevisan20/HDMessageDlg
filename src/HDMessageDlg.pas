@@ -1,10 +1,8 @@
-unit HDMessageDlg;
+﻿unit HDMessageDlg;
 
 interface
 
 uses
-  Data.DB,
-
   HDMessageDlg.IconsSVG,
   HDMessageDlg.Interfaces,
   HDMessageDlg.View.FMX,
@@ -23,9 +21,9 @@ type
     FMsgType          : TType;
     FColorSvgIcon     : TAlphaColor;
     FColorBackuground : TAlphaColor;
+    function CreateForm: THDMessageDlgFMX;
   public
     constructor Create;
-    destructor Destroy; override;
     class function New: iHDMessageDlg;
     function MsgTitle(aValue: String)   : iHDMessageDlg;
     function MsgQuestion(aValue: String): iHDMessageDlg;
@@ -38,13 +36,16 @@ type
 
 implementation
 
-constructor THDMessageDlg.Create;
+function THDMessageDlg.CreateForm: THDMessageDlgFMX;
 begin
-end;
-
-destructor THDMessageDlg.Destroy;
-begin
-  inherited;
+  Result := THDMessageDlgFMX.Create(nil);
+  Result.MsgTitle         := FMsgTitle;
+  Result.MsgQuestion      := FMsgQuestion;
+  Result.MsgBody          := FMsgBody;
+  Result.MsgIcon          := FMsgIcon;
+  Result.MsgType          := FMsgType;
+  Result.ColorSvgIcon     := FColorSvgIcon;
+  Result.ColorBackuground := FColorBackuground;
 end;
 
 function THDMessageDlg.DisplayMessage: iHDMessageDlg;
@@ -52,18 +53,11 @@ var
   HDMessageDlgFMX : THDMessageDlgFMX;
 begin
   Result := Self;
-  HDMessageDlgFMX := THDMessageDlgFMX.Create(nil);
+  HDMessageDlgFMX := CreateForm;
   try
-   HDMessageDlgFMX.MsgTitle         := FMsgTitle;
-   HDMessageDlgFMX.MsgQuestion      := FMsgQuestion;
-   HDMessageDlgFMX.MsgBody          := FMsgBody;
-   HDMessageDlgFMX.MsgIcon          := FMsgIcon;
-   HDMessageDlgFMX.MsgType          := FMsgType;
-   HDMessageDlgFMX.ColorSvgIcon     := FColorSvgIcon;
-   HDMessageDlgFMX.ColorBackuground := FColorBackuground;
-   HDMessageDlgFMX.ShowModal;
+    HDMessageDlgFMX.ShowModal;
   finally
-   FreeAndNil(HDMessageDlgFMX);
+    FreeAndNil(HDMessageDlgFMX);
   end;
 end;
 
@@ -71,19 +65,12 @@ function THDMessageDlg.DisplayQuestion: Boolean;
 var
   HDMessageDlgFMX : THDMessageDlgFMX;
 begin
-  HDMessageDlgFMX := THDMessageDlgFMX.Create(nil);
+  HDMessageDlgFMX := CreateForm;
   try
-   HDMessageDlgFMX.MsgTitle         := FMsgTitle;
-   HDMessageDlgFMX.MsgQuestion      := FMsgQuestion;
-   HDMessageDlgFMX.MsgBody          := FMsgBody;
-   HDMessageDlgFMX.MsgIcon          := FMsgIcon;
-   HDMessageDlgFMX.MsgType          := FMsgType;
-   HDMessageDlgFMX.ColorSvgIcon     := FColorSvgIcon;
-   HDMessageDlgFMX.ColorBackuground := FColorBackuground;
-   HDMessageDlgFMX.ShowModal;
-   Result                           := HDMessageDlgFMX.MsgResponse;
+    HDMessageDlgFMX.ShowModal;
+    Result := HDMessageDlgFMX.MsgResponse;
   finally
-   FreeAndNil(HDMessageDlgFMX);
+    FreeAndNil(HDMessageDlgFMX);
   end;
 end;
 
@@ -95,39 +82,10 @@ end;
 
 function THDMessageDlg.MsgIcon(aValue: TIcon): iHDMessageDlg;
 begin
-  Result := Self;
-  case aValue of
-   TiAttention:
-     begin
-      FMsgIcon          := THDMessageDlgIconsSVG.Icon(aValue);
-      FColorSvgIcon     := THDMessageDlgIconsSVG.ColorSvgIcon(aValue);
-      FColorBackuground := THDMessageDlgIconsSVG.ColorBackuground(aValue);
-     end;
-   TiError:
-     begin
-      FMsgIcon          := THDMessageDlgIconsSVG.Icon(aValue);
-      FColorSvgIcon     := THDMessageDlgIconsSVG.ColorSvgIcon(aValue);
-      FColorBackuground := THDMessageDlgIconsSVG.ColorBackuground(aValue);
-     end;
-   TiLike:
-     begin
-      FMsgIcon          := THDMessageDlgIconsSVG.Icon(aValue);
-      FColorSvgIcon     := THDMessageDlgIconsSVG.ColorSvgIcon(aValue);
-      FColorBackuground := THDMessageDlgIconsSVG.ColorBackuground(aValue);
-     end;
-   TiMessage:
-     begin
-      FMsgIcon          := THDMessageDlgIconsSVG.Icon(aValue);
-      FColorSvgIcon     := THDMessageDlgIconsSVG.ColorSvgIcon(aValue);
-      FColorBackuground := THDMessageDlgIconsSVG.ColorBackuground(aValue);
-     end;
-   TiQuestion:
-     begin
-      FMsgIcon          := THDMessageDlgIconsSVG.Icon(aValue);
-      FColorSvgIcon     := THDMessageDlgIconsSVG.ColorSvgIcon(aValue);
-      FColorBackuground := THDMessageDlgIconsSVG.ColorBackuground(aValue);
-     end;
-  end;
+  Result            := Self;
+  FMsgIcon          := THDMessageDlgIconsSVG.Icon(aValue);
+  FColorSvgIcon     := THDMessageDlgIconsSVG.ColorSvgIcon(aValue);
+  FColorBackuground := THDMessageDlgIconsSVG.ColorBackuground(aValue);
 end;
 
 function THDMessageDlg.MsgQuestion(aValue: String): iHDMessageDlg;
@@ -146,6 +104,15 @@ function THDMessageDlg.MsgType(aValue: TType): iHDMessageDlg;
 begin
   Result   := Self;
   FMsgType := aValue;
+end;
+
+constructor THDMessageDlg.Create;
+begin
+  inherited;
+  // defaults quando MsgIcon não for chamado
+  FMsgIcon          := THDMessageDlgIconsSVG.Icon(TiMessage);
+  FColorSvgIcon     := THDMessageDlgIconsSVG.ColorSvgIcon(TiMessage);
+  FColorBackuground := THDMessageDlgIconsSVG.ColorBackuground(TiMessage);
 end;
 
 class function THDMessageDlg.New: iHDMessageDlg;
