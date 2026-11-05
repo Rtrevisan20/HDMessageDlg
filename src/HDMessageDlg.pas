@@ -89,7 +89,7 @@ begin
   Result            := Self;
   FMsgIcon          := THDMessageDlgIconsSVG.Icon(aValue);
   FColorSvgIcon     := THDMessageDlgIconsSVG.ColorSvgIcon(aValue);
-  FColorBackground := THDMessageDlgIconsSVG.ColorBackground(aValue);
+  FColorBackground  := THDMessageDlgIconsSVG.ColorBackground(aValue);
 end;
 
 function THDMessageDlg.MsgQuestion(aValue: String): IHDMessageDlg;
@@ -122,7 +122,7 @@ begin
   // defaults quando MsgIcon não for chamado
   FMsgIcon          := THDMessageDlgIconsSVG.Icon(TiMessage);
   FColorSvgIcon     := THDMessageDlgIconsSVG.ColorSvgIcon(TiMessage);
-  FColorBackground := THDMessageDlgIconsSVG.ColorBackground(TiMessage);
+  FColorBackground  := THDMessageDlgIconsSVG.ColorBackground(TiMessage);
   FLanguage         := DefaultLanguage;
 end;
 

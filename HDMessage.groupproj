@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{8E05C9B5-17BA-45A4-94B5-B9D601A37020}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="HDMessageDlg.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Samples\Samples.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="HDMessageDlg">
+        <MSBuild Projects="HDMessageDlg.dproj"/>
+    </Target>
+    <Target Name="HDMessageDlg:Clean">
+        <MSBuild Projects="HDMessageDlg.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="HDMessageDlg:Make">
+        <MSBuild Projects="HDMessageDlg.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Samples">
+        <MSBuild Projects="Samples\Samples.dproj"/>
+    </Target>
+    <Target Name="Samples:Clean">
+        <MSBuild Projects="Samples\Samples.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Samples:Make">
+        <MSBuild Projects="Samples\Samples.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="HDMessageDlg;Samples"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="HDMessageDlg:Clean;Samples:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="HDMessageDlg:Make;Samples:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

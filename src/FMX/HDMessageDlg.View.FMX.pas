@@ -74,10 +74,10 @@ type
     property MsgBody          : string      read FMsgBody          write SetMsgBody;
     property MsgIcon          : string      read FMsgIcon          write SetMsgIcon;
     property MsgResponse      : Boolean     read FMsgResponse;
-    property MsgType          : THDMessageType       read FMsgType          write SetMsgType;
+    property MsgType          : THDMessageType read FMsgType       write SetMsgType;
     property Language         : TLanguage   read FLanguage         write FLanguage;
     property ColorSvgIcon     : TAlphaColor read FColorSvgIcon     write FColorSvgIcon;
-    property ColorBackground : TAlphaColor read FColorBackground write FColorBackground;
+    property ColorBackground  : TAlphaColor read FColorBackground  write FColorBackground;
   end;
 
 implementation
