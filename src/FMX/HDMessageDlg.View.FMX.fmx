@@ -13,7 +13,7 @@ object HDMessageDlgFMX: THDMessageDlgFMX
   OnKeyDown = FormKeyDown
   OnShow = FormShow
   DesignerMasterStyle = 0
-  object RecBackGround: TRectangle
+  object RecBackground: TRectangle
     Align = Client
     Fill.Color = xFFD7D8DB
     Size.Width = 580.000000000000000000

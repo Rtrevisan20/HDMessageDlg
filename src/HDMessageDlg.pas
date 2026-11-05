@@ -12,28 +12,28 @@ uses
   System.UITypes;
 
 type
-  THDMessageDlg = class(TInterfacedObject, iHDMessageDlg)
+  THDMessageDlg = class(TInterfacedObject, IHDMessageDlg)
   private
     FMsgTitle         : String;
     FMsgQuestion      : String;
     FMsgBody          : String;
     FMsgIcon          : string;
-    FMsgType          : TType;
+    FMsgType          : THDMessageType;
     FColorSvgIcon     : TAlphaColor;
-    FColorBackuground : TAlphaColor;
+    FColorBackground : TAlphaColor;
     FLanguage        : TLanguage;
     function CreateForm: THDMessageDlgFMX;
   public
     class var DefaultLanguage: TLanguage;
     constructor Create;
-    class function New: iHDMessageDlg;
-    function MsgTitle(aValue: String)   : iHDMessageDlg;
-    function MsgQuestion(aValue: String): iHDMessageDlg;
-    function MsgBody(aValue: String)    : iHDMessageDlg;
-    function MsgIcon(aValue: TIcon)         : iHDMessageDlg;
-    function MsgType(aValue: TType)         : iHDMessageDlg;
-    function MsgLanguage(aValue: TLanguage) : iHDMessageDlg;
-    function DisplayMessage             : iHDMessageDlg;
+    class function New: IHDMessageDlg;
+    function MsgTitle(aValue: String)   : IHDMessageDlg;
+    function MsgQuestion(aValue: String): IHDMessageDlg;
+    function MsgBody(aValue: String)    : IHDMessageDlg;
+    function MsgIcon(aValue: THDMessageDlgIcon)         : IHDMessageDlg;
+    function MsgType(aValue: THDMessageType)         : IHDMessageDlg;
+    function MsgLanguage(aValue: TLanguage) : IHDMessageDlg;
+    function DisplayMessage             : IHDMessageDlg;
     function DisplayQuestion            : Boolean;
   end;
 
@@ -49,10 +49,10 @@ begin
   Result.MsgType          := FMsgType;
   Result.Language         := FLanguage;
   Result.ColorSvgIcon     := FColorSvgIcon;
-  Result.ColorBackuground := FColorBackuground;
+  Result.ColorBackground := FColorBackground;
 end;
 
-function THDMessageDlg.DisplayMessage: iHDMessageDlg;
+function THDMessageDlg.DisplayMessage: IHDMessageDlg;
 var
   HDMessageDlgFMX : THDMessageDlgFMX;
 begin
@@ -78,39 +78,39 @@ begin
   end;
 end;
 
-function THDMessageDlg.MsgBody(aValue: String): iHDMessageDlg;
+function THDMessageDlg.MsgBody(aValue: String): IHDMessageDlg;
 begin
   Result   := Self;
   FMsgBody := aValue;
 end;
 
-function THDMessageDlg.MsgIcon(aValue: TIcon): iHDMessageDlg;
+function THDMessageDlg.MsgIcon(aValue: THDMessageDlgIcon): IHDMessageDlg;
 begin
   Result            := Self;
   FMsgIcon          := THDMessageDlgIconsSVG.Icon(aValue);
   FColorSvgIcon     := THDMessageDlgIconsSVG.ColorSvgIcon(aValue);
-  FColorBackuground := THDMessageDlgIconsSVG.ColorBackuground(aValue);
+  FColorBackground := THDMessageDlgIconsSVG.ColorBackground(aValue);
 end;
 
-function THDMessageDlg.MsgQuestion(aValue: String): iHDMessageDlg;
+function THDMessageDlg.MsgQuestion(aValue: String): IHDMessageDlg;
 begin
   Result       := Self;
   FMsgQuestion := aValue;
 end;
 
-function THDMessageDlg.MsgTitle(aValue: String): iHDMessageDlg;
+function THDMessageDlg.MsgTitle(aValue: String): IHDMessageDlg;
 begin
   Result    := Self;
   FMsgTitle := aValue;
 end;
 
-function THDMessageDlg.MsgType(aValue: TType): iHDMessageDlg;
+function THDMessageDlg.MsgType(aValue: THDMessageType): IHDMessageDlg;
 begin
   Result   := Self;
   FMsgType := aValue;
 end;
 
-function THDMessageDlg.MsgLanguage(aValue: TLanguage): iHDMessageDlg;
+function THDMessageDlg.MsgLanguage(aValue: TLanguage): IHDMessageDlg;
 begin
   Result    := Self;
   FLanguage := aValue;
@@ -122,11 +122,11 @@ begin
   // defaults quando MsgIcon não for chamado
   FMsgIcon          := THDMessageDlgIconsSVG.Icon(TiMessage);
   FColorSvgIcon     := THDMessageDlgIconsSVG.ColorSvgIcon(TiMessage);
-  FColorBackuground := THDMessageDlgIconsSVG.ColorBackuground(TiMessage);
+  FColorBackground := THDMessageDlgIconsSVG.ColorBackground(TiMessage);
   FLanguage         := DefaultLanguage;
 end;
 
-class function THDMessageDlg.New: iHDMessageDlg;
+class function THDMessageDlg.New: IHDMessageDlg;
 begin
   Result := Self.Create;
 end;

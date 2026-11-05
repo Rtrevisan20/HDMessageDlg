@@ -20,7 +20,7 @@ uses
 
 type
   THDMessageDlgFMX = class(TForm)
-    RecBackGround     : TRectangle;
+    RecBackground     : TRectangle;
     LayoutContainer   : TLayout;
     LayoutTop         : TLayout;
     RecLblTitle: TRectangle;
@@ -53,31 +53,31 @@ type
     FMsgTitle         : string;
     FMsgQuestion      : string;
     FMsgBody          : string;
-    FMsgType          : TType;
+    FMsgType          : THDMessageType;
     FMsgIcon          : string;
     FColorSvgIcon     : TAlphaColor;
     FMsgResponse      : Boolean;
-    FColorBackuground : TAlphaColor;
+    FColorBackground : TAlphaColor;
     FLanguage         : TLanguage;
     procedure SetMsgIcon(const Value: string);
     procedure SetMsgBody(const Value: string);
     procedure SetMsgQuestion(const Value: string);
-    procedure SetMsgType(const Value: TType);
+    procedure SetMsgType(const Value: THDMessageType);
     procedure SetMsgTitle(const Value: string);
-    procedure TypeOk;
-    procedure TypeQuestion;
-    procedure SetNo;
-    procedure SetYes;
+    procedure SetupOk;
+    procedure SetupQuestion;
+    procedure ConfirmNo;
+    procedure ConfirmYes;
   published
     property MsgTitle         : string      read FMsgTitle         write SetMsgTitle;
     property MsgQuestion      : string      read FMsgQuestion      write SetMsgQuestion;
     property MsgBody          : string      read FMsgBody          write SetMsgBody;
     property MsgIcon          : string      read FMsgIcon          write SetMsgIcon;
     property MsgResponse      : Boolean     read FMsgResponse;
-    property MsgType          : TType       read FMsgType          write SetMsgType;
+    property MsgType          : THDMessageType       read FMsgType          write SetMsgType;
     property Language         : TLanguage   read FLanguage         write FLanguage;
     property ColorSvgIcon     : TAlphaColor read FColorSvgIcon     write FColorSvgIcon;
-    property ColorBackuground : TAlphaColor read FColorBackuground write FColorBackuground;
+    property ColorBackground : TAlphaColor read FColorBackground write FColorBackground;
   end;
 
 implementation
@@ -89,12 +89,12 @@ uses
 
 procedure THDMessageDlgFMX.btnNoClick(Sender: TObject);
 begin
-  SetNo;
+  ConfirmNo;
 end;
 
 procedure THDMessageDlgFMX.btnYesClick(Sender: TObject);
 begin
-  SetYes;
+  ConfirmYes;
 end;
 
 procedure THDMessageDlgFMX.FormCreate(Sender: TObject);
@@ -118,7 +118,7 @@ begin
   begin
     Key     := 0;
     KeyChar := #0;
-    SetYes;
+    ConfirmYes;
     Exit;
   end;
 
@@ -126,7 +126,7 @@ begin
   begin
     Key     := 0;
     KeyChar := #0;
-    SetNo;
+    ConfirmNo;
   end;
 end;
 
@@ -136,13 +136,13 @@ begin
   lbl_Title.Text           := FMsgTitle;
   lbl_Question.Text        := FMsgQuestion;
   lbl_BodyMessage.Text     := FMsgBody;
-  RecBackGround.Fill.Color := TAlphaColor(FColorBackuground);
+  RecBackground.Fill.Color := TAlphaColor(FColorBackground);
   PathIconSVG.Fill.Color   := FColorSvgIcon;
   PathIconSVG.Data.Data    := FMsgIcon;
 
   case FMsgType of
-   TyOK      : TypeOk;
-   TyQuestion: TypeQuestion;
+   TyOK      : SetupOk;
+   TyQuestion: SetupQuestion;
   end;
 end;
 
@@ -162,7 +162,7 @@ begin
   FMsgBody := Value;
 end;
 
-procedure THDMessageDlgFMX.SetNo;
+procedure THDMessageDlgFMX.ConfirmNo;
 begin
   FMsgResponse := False;
   Close;
@@ -173,13 +173,13 @@ begin
   FMsgQuestion := Value;
 end;
 
-procedure THDMessageDlgFMX.SetYes;
+procedure THDMessageDlgFMX.ConfirmYes;
 begin
   FMsgResponse := True;
   Close;
 end;
 
-procedure THDMessageDlgFMX.SetMsgType(const Value: TType);
+procedure THDMessageDlgFMX.SetMsgType(const Value: THDMessageType);
 begin
   FMsgType := Value;
 end;
@@ -189,13 +189,13 @@ begin
   FMsgTitle := Value;
 end;
 
-procedure THDMessageDlgFMX.TypeOk;
+procedure THDMessageDlgFMX.SetupOk;
 begin
   LayoutNo.Visible := False;
   btnYes.Text      := TextButtonOK(FLanguage);
 end;
 
-procedure THDMessageDlgFMX.TypeQuestion;
+procedure THDMessageDlgFMX.SetupQuestion;
 begin
   LayoutNo.Visible      := True;
   btnYes.Text           := TextButtonYes(FLanguage);

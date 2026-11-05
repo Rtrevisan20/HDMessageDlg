@@ -51,10 +51,10 @@
 | C05 | P3 | Feito | `MsgResponse` exposto com `write`; seção `public` vazia antes de `published` | `src/FMX/HDMessageDlg.View.FMX.pas` |
 | C06 | P4 | Feito | `btnNo.Text` atribuído em `FormShow` e de novo em `TypeQuestion` | `src/FMX/HDMessageDlg.View.FMX.pas` |
 | C07 | P3 | Feito | `DisplayMessage` e `DisplayQuestion` repetem os mesmos 10 `assigns` | `src/HDMessageDlg.pas` |
-| C08 | P4 | Feito | Nomenclatura mista `SetYes`/`SetNo`/`TypeOk`/`TypeQuestion` (mantida — v2.0); `WrapMode` duplicado no `.fmx` e no código (removido do código) | `src/FMX/HDMessageDlg.View.FMX.pas` |
+| C08 | P4 | Feito | Nomenclatura mista `SetYes`/`SetNo`/`TypeOk`/`TypeQuestion` → `ConfirmYes`/`ConfirmNo`/`SetupOk`/`SetupQuestion` (v2.0); `WrapMode` duplicado no `.fmx` e no código (removido do código) | `src/FMX/HDMessageDlg.View.FMX.pas` |
 | C09 | P3 | Feito | Constantes VCL não usadas (removidas), `FMXColorTop` em uso (B02), linha em branco antes de `implementation` (encoding cp1252 mantido — ver B06) | `src/HDMessageDlg.Consts.pas` |
-| C10 | P4 | Descartado | Typos: `Backuground`, `imgMenssage`, `RecBackGround` vs `Backuground` (renomeação breaking — v2.0) | vários arquivos |
-| C11 | P4 | Descartado | Nomes genéricos `TIcon`/`TType` e `iHDMessageDlg` minúsculo (breaking change — v2.0) | `src/HDMessageDlg.Interfaces.pas:6-9` |
+| C10 | P4 | Feito | Typos corrigidos: `Background`, `imgMessage`, `RecBackground` (v2.0) | vários arquivos |
+| C11 | P4 | Feito | Nomes genéricos renomeados: `TIcon`→`THDMessageDlgIcon`, `TType`→`THDMessageType`, `iHDMessageDlg`→`IHDMessageDlg` (v2.0) | `src/HDMessageDlg.Interfaces.pas` |
 | C12 | P4 | Descartado | Formatação: alinhamento de colunas, indentação de 3 espaços nos `try`, ordem dos `uses` (cosmético — v2.0) | `View.FMX.pas:27,29,45`; `HDMessageDlg.pas:57-63,76-82`; `IconsSVG.pas:74` |
 | C13 | P4 | Feito | `Icon()` sem `Result` padrão; adicionado `else Result := ''` para novos enums | `src/HDMessageDlg.IconsSVG.pas:92-103` |
 
@@ -62,7 +62,7 @@
 
 | ID | P | Status | Item | Local |
 |----|---|--------|------|-------|
-| R01 | P1 | Feito | `.fmx` de 1,37 MB por `imgMenssage` morto com 6 PNGs embutidos e caminhos absolutos `D:\Recursos Programacao\...` | `src/FMX/HDMessageDlg.View.FMX.fmx`, `src/FMX/HDMessageDlg.View.FMX.pas` |
+| R01 | P1 | Feito | `.fmx` de 1,37 MB por `imgMessage` morto com 6 PNGs embutidos e caminhos absolutos `D:\Recursos Programacao\...` | `src/FMX/HDMessageDlg.View.FMX.fmx`, `src/FMX/HDMessageDlg.View.FMX.pas` |
 | R02 | P3 | Feito | `src/assets/*.png` sem uso (só referenciados pelos bitmaps embutidos do R01) | `src/assets/` (removida) |
 | R03 | P2 | Descartado | `StyleBook` de 25 KB com estilos de outro projeto — **mantido** porque B04 depende dele (`btnConfirmacaoCustom`); limpeza dos estilos não usados adiada para v2.0 | `src/FMX/HDMessageDlg.View.FMX.fmx` |
 | R04 | P2 | Feito | `Samples.dproj` com ~1,9 KB de `DCC_UsePackage` de terceiros (FastReport, Indy, RESTDW, RTinfor, Skia...) e sem `DCC_UnitSearchPath` | `Samples/Samples.dproj` |
@@ -118,12 +118,12 @@ end;
 
 ### C01 — Simplificar `MsgIcon`
 ```pascal
-function THDMessageDlg.MsgIcon(aValue: TIcon): iHDMessageDlg;
+function THDMessageDlg.MsgIcon(aValue: THDMessageDlgIcon): IHDMessageDlg;
 begin
   Result            := Self;
   FMsgIcon          := THDMessageDlgIconsSVG.Icon(aValue);
   FColorSvgIcon     := THDMessageDlgIconsSVG.ColorSvgIcon(aValue);
-  FColorBackuground := THDMessageDlgIconsSVG.ColorBackuground(aValue);
+  FColorBackground := THDMessageDlgIconsSVG.ColorBackground(aValue);
 end;
 ```
 
@@ -132,7 +132,7 @@ end;
 - Em `View.FMX.pas`, remover `Winapi.Windows` e usar `vkReturn`/`vkEscape` de `System.UITypes` (já importado). Testado: compila.
 
 ### R01/R03 — Limpeza do `.fmx`
-- Remover o objeto `imgMenssage` (e o campo na classe) e o `StyleBook` não utilizado.
+- Remover o objeto `imgMessage` (e o campo na classe) e o `StyleBook` não utilizado.
 - Resultado testado: `.fmx` de **1372,3 KB → 9,3 KB**, pacote compila.
 - Remover os `FileName` absolutos junto com o `TImage`.
 
@@ -152,7 +152,7 @@ end;
 ## Decisões já tomadas
 
 - Correções de baixo risco primeiro (B01, B02, B03, B08, C01, C02, C03, C04, R01, R05).
-- Renomeações que quebram API (`Backuground`, `TIcon`/`TType`, `iHDMessageDlg`) ficam para uma versão 2.0.
+- Renomeações que quebram API (`Background`, `THDMessageDlgIcon`/`THDMessageType`, `IHDMessageDlg`) ficam para uma versão 2.0.
 - Não alterar o sample além do necessário para ele compilar/rodar (B05, R04).
 
 ## Comandos de validação

@@ -13,9 +13,9 @@ type
   THDMessageDlgIconsSVG = class
   private
   public
-    class function Icon(ATipo : TIcon) : string;
-    class function ColorSvgIcon(ATipo : TIcon) : TAlphaColor;
-    class function ColorBackuground(ATipo : TIcon) : TAlphaColor;
+    class function Icon(ATipo : THDMessageDlgIcon) : string;
+    class function ColorSvgIcon(ATipo : THDMessageDlgIcon) : TAlphaColor;
+    class function ColorBackground(ATipo : THDMessageDlgIcon) : TAlphaColor;
   end;
 
 const
@@ -55,29 +55,29 @@ const
   CColorSvgMessage           = $FF00BDE3;
   CColorSvgDefault           = $FF086FFB;
 
-  CColorBackugroundAttention = $FFFAF3D1;
-  CColorBackugroundError     = $FFF4E3DB;
-  CColorBackugroundLike      = $FFE7F6F8;
-  CColorBackugroundMessage   = $FFE7F6F8;
-  CColorBackugroundQuestion  = $FFF4E3DB;
-  CColorBackugroundDefault   = $FFD7D8DB;
+  CColorBackgroundAttention = $FFFAF3D1;
+  CColorBackgroundError     = $FFF4E3DB;
+  CColorBackgroundLike      = $FFE7F6F8;
+  CColorBackgroundMessage   = $FFE7F6F8;
+  CColorBackgroundQuestion  = $FFF4E3DB;
+  CColorBackgroundDefault   = $FFD7D8DB;
 
 
 implementation
 
-class function THDMessageDlgIconsSVG.ColorBackuground(ATipo: TIcon): TAlphaColor;
+class function THDMessageDlgIconsSVG.ColorBackground(ATipo: THDMessageDlgIcon): TAlphaColor;
 begin
-  Result := CColorBackugroundDefault;
+  Result := CColorBackgroundDefault;
   case ATipo of
-    TiAttention : Result := CColorBackugroundAttention;
-    TiError     : Result := CColorBackugroundError;
-    TiLike      : Result := CColorBackugroundLike;
-    TiMessage   : Result := CColorBackugroundMessage;
-    TiQuestion  : Result := CColorBackugroundQuestion;
+    TiAttention : Result := CColorBackgroundAttention;
+    TiError     : Result := CColorBackgroundError;
+    TiLike      : Result := CColorBackgroundLike;
+    TiMessage   : Result := CColorBackgroundMessage;
+    TiQuestion  : Result := CColorBackgroundQuestion;
   end;
 end;
 
-class function THDMessageDlgIconsSVG.ColorSvgIcon(ATipo: TIcon): TAlphaColor;
+class function THDMessageDlgIconsSVG.ColorSvgIcon(ATipo: THDMessageDlgIcon): TAlphaColor;
 begin
   Result := CColorSvgDefault;
   case ATipo of
@@ -89,7 +89,7 @@ begin
   end;
 end;
 
-class function THDMessageDlgIconsSVG.Icon(ATipo : TIcon) : string;
+class function THDMessageDlgIconsSVG.Icon(ATipo : THDMessageDlgIcon) : string;
 begin
   case ATipo of
     TiAttention : Result := CIconAttention;

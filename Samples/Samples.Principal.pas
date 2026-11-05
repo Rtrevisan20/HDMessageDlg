@@ -52,7 +52,7 @@ uses
 
 procedure TForm1.BtnAttentionClick(Sender: TObject);
 var
-  Msg: iHDMessageDlg;
+  Msg: IHDMessageDlg;
 begin
   Msg := THDMessageDlg.New;
 
@@ -67,7 +67,7 @@ end;
 
 procedure TForm1.BtnErrorClick(Sender: TObject);
 var
-  Msg: iHDMessageDlg;
+  Msg: IHDMessageDlg;
 begin
   Msg := THDMessageDlg.New;
 
@@ -82,7 +82,7 @@ end;
 
 procedure TForm1.BtnLikeClick(Sender: TObject);
 var
-  Msg: iHDMessageDlg;
+  Msg: IHDMessageDlg;
 begin
   Msg := THDMessageDlg.New;
 
@@ -97,7 +97,7 @@ end;
 
 procedure TForm1.BtnMessageClick(Sender: TObject);
 var
-  Msg: iHDMessageDlg;
+  Msg: IHDMessageDlg;
 begin
   Msg := THDMessageDlg.New;
 
@@ -112,7 +112,7 @@ end;
 
 procedure TForm1.BtnQuestionClick(Sender: TObject);
 var
-  Msg: iHDMessageDlg;
+  Msg: IHDMessageDlg;
 begin
   Msg := THDMessageDlg.New;
  if
@@ -122,6 +122,7 @@ begin
    .MsgBody('Selecione uma das opções')
    .MsgIcon(TiQuestion)
    .MsgType(TyQuestion)
+   .MsgLanguage(lgEnglish)
    .DisplayQuestion then
    mm.Lines.Add('Você selecionou Sim') else
    mm.Lines.Add('Você selecionou Não');

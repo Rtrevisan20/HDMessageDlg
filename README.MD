@@ -51,7 +51,7 @@ Idiomas suportados: `lgPortuguese` (padrão), `lgEnglish`.
 
 ```delphi
 var
-  MSG : iHDMessageDlg;
+  MSG : IHDMessageDlg;
 begin
   MSG := THDMessageDlg.New;  
   MSG
@@ -68,7 +68,7 @@ end;
 
 ```delphi
 var
-  MSG : iHDMessageDlg;
+  MSG : IHDMessageDlg;
 begin
   MSG := THDMessageDlg.New;  
   MSG
@@ -85,7 +85,7 @@ end;
 
 ```delphi
 var
-  MSG : iHDMessageDlg;
+  MSG : IHDMessageDlg;
 begin
   MSG := THDMessageDlg.New;  
   MSG
@@ -102,7 +102,7 @@ end;
 
 ```delphi
 var
-  MSG : iHDMessageDlg;
+  MSG : IHDMessageDlg;
 begin
   MSG := THDMessageDlg.New;  
   MSG
@@ -119,7 +119,7 @@ end;
 
 ```delphi
 var
-  MSG : iHDMessageDlg;
+  MSG : IHDMessageDlg;
 begin
   MSG := THDMessageDlg.New;  
   MSG
@@ -136,7 +136,7 @@ end;
 
 ```delphi
 var
-  MSG : iHDMessageDlg;
+  MSG : IHDMessageDlg;
 begin
   MSG := THDMessageDlg.New;  
   MSG
